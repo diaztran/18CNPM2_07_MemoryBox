@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MemoryBox</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="photo_fragment">PHOTOS</string>
+    <string name="album_fragment">ALBUMS</string>
+    <string name="online_fragment">PHOTOS</string>
+</resources>

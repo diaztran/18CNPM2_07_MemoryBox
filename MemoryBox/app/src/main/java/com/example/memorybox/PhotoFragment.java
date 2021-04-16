@@ -1,14 +1,21 @@
 package com.example.memorybox;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,9 +28,12 @@ import java.util.List;
  */
 public class PhotoFragment extends Fragment {
 
-    private View v;
-    private RecyclerView recyclerView;
-    private List<Photo> photoList;
+
+    RecyclerView recyclerView;
+    PhotoAdapter photoAdapter;
+    List<Photo> photoList;
+    private static final int MY_READ_PERMISSION_CODE=101;
+
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -57,6 +67,7 @@ public class PhotoFragment extends Fragment {
         return fragment;
     }
 
+    //Chỗ đỗ ảnh
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,30 +76,43 @@ public class PhotoFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        photoList = new ArrayList<>();
-        photoList.add(new Photo("1","1", R.drawable.ic_launcher_foreground));
-        photoList.add(new Photo("1","1", R.drawable.ic_launcher_foreground));
-        photoList.add(new Photo("1","1", R.drawable.ic_launcher_foreground));
-        photoList.add(new Photo("1","1", R.drawable.ic_launcher_foreground));
-        photoList.add(new Photo("1","1", R.drawable.ic_launcher_foreground));
-        photoList.add(new Photo("1","1", R.drawable.ic_launcher_foreground));
-        photoList.add(new Photo("1","1", R.drawable.ic_launcher_foreground));
-        photoList.add(new Photo("1","1", R.drawable.ic_launcher_foreground));
-        photoList.add(new Photo("1","1", R.drawable.ic_launcher_foreground));
-        photoList.add(new Photo("1","1", R.drawable.ic_launcher_foreground));
-        photoList.add(new Photo("1","1", R.drawable.ic_launcher_foreground));
+        if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},MY_READ_PERMISSION_CODE);
+        }
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode==MY_READ_PERMISSION_CODE)
+        {
+            if(grantResults[0]==PackageManager.PERMISSION_GRANTED)
+            {
+                Toast.makeText(getContext(),"Read external oke",Toast.LENGTH_LONG).show();
+                photoList=VideoGallery.listOfImages(getContext());
+                photoAdapter=new PhotoAdapter(getContext(),photoList); //Xong
+            }
+            else
+            {
+                Toast.makeText(getContext(),"Read external FAILED",Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        v = inflater.inflate(R.layout.fragment_photo, container, false);
+        View v = inflater.inflate(R.layout.fragment_photo, container, false);
         recyclerView = v.findViewById(R.id.recyclerview_photo);
-        PhotoAdapter photoAdapter = new PhotoAdapter(getContext(), photoList);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        photoList=VideoGallery.listOfImages(getContext());
+        photoAdapter=new PhotoAdapter(getContext(),photoList); //Xong
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),4));
         recyclerView.setAdapter(photoAdapter);
         return v;
+
     }
 }

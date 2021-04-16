@@ -3,35 +3,30 @@ package com.example.memorybox;
 import java.time.LocalDate;
 
 public class Photo {
-    private String id;
-    private String name;
-    private int photoResource;
-
-    public Photo(String id, String name, int photoResource) {
-        this.id = id;
-        this.name = name;
-//        this.timeCreate = timeCreate;
-        this.photoResource = photoResource;
+    private String path;
+    private String thumb;
+    public Photo(String path, String thumb) {
+        this.path = path;
+        this.thumb = thumb;
     }
 
-    public Photo() {
+    public String getPath() {
+        return path;
     }
 
-    public String getId() {
-        return id;
+    public void setPath(String path) {
+        this.path = path;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getThumb() {
+        return thumb;
     }
 
-    public String getName() {
-        return name;
+    public void setThumb(String thumb) {
+        this.thumb = thumb;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+
 
 //    public LocalDate getTimeCreate() {
 //        return timeCreate;
@@ -41,11 +36,5 @@ public class Photo {
 //        this.timeCreate = timeCreate;
 //    }
 
-    public int getPhotoResource() {
-        return photoResource;
-    }
 
-    public void setPhotoResource(int photoResource) {
-        this.photoResource = photoResource;
-    }
 }

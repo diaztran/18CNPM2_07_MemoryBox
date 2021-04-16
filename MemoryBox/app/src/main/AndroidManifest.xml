@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.memorybox">
 
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -12,6 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MemoryBox">
+        <activity android:name=".DisplayFullImageActivity"></activity>
+        <activity
+            android:name=".PlayVideoActivity"
+            android:label="@string/title_activity_play_video"
+            android:theme="@style/Theme.MemoryBox.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

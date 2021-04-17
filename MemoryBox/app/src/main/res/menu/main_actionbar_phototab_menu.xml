@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.MainActivity">
+
+    <item
+        android:id="@+id/action_main_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search_photo"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_main_addPhoto"
+        android:title="@string/new_photo"
+        android:icon="@drawable/ic_camera"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_main_select"
+        android:title="@string/select"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_main_setting"
+        android:title="@string/setting"
+        app:showAsAction="never"/>
+</menu>

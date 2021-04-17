@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">MemoryBox</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="photo_fragment">PHOTOS</string>
+    <string name="album_fragment">ALBUMS</string>
+    <string name="online_fragment">PHOTOS</string>
+    <string name="title_activity_play_video">PlayVideoActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="select">Select</string>
+    <string name="setting">Setting</string>
+    <string name="search_photo">Search Photo</string>
+    <string name="new_photo">New Photo</string>
+    <string name="all_new_album">All New Album</string>
+    <string name="date_ascending">Date (Ascending)</string>
+    <string name="date_descending">Date (Descending)</string>
+    <string name="view_type">View Type...</string>
+    <string name="list">List</string>
+    <string name="grid">Grid</string>
+    <string name="name_ascending">Name (Ascending)</string>
+    <string name="name_descending">Name (Descending)</string>
+    <string name="sort_by">Sort by...</string>
+</resources>

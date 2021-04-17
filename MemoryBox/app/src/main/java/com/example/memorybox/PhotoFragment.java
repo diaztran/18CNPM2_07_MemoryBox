@@ -1,18 +1,24 @@
 package com.example.memorybox;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -27,7 +33,9 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class PhotoFragment extends Fragment {
-
+    public static int REQUEST_IMAGE_CAPTURE = 1;
+    public static int ACTION_TAKE_VIDEO_RESULT_CODE = 1;
+    public static int ACTION_USE_CAMERA_ALL_FEATURE = 1;
 
     RecyclerView recyclerView;
     PhotoAdapter photoAdapter;
@@ -76,6 +84,8 @@ public class PhotoFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+        setHasOptionsMenu(true);
+
         if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},MY_READ_PERMISSION_CODE);
@@ -113,6 +123,37 @@ public class PhotoFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),4));
         recyclerView.setAdapter(photoAdapter);
         return v;
+    }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.main_actionbar_phototab_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_main_search:
+                Log.e("Option", "Search Selected");
+                return true;
+            case R.id.action_main_addPhoto:
+                Intent cameraIntent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+                getActivity().startActivityForResult(cameraIntent, ACTION_USE_CAMERA_ALL_FEATURE);
+                Log.e("Option", "Camera Selected");
+                return true;
+            case R.id.action_main_select:
+                Log.e("Option", "Select Selected");
+                return true;
+            case R.id.action_main_setting:
+                Log.e("Option", "Setting Selected");
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

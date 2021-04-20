@@ -13,6 +13,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,7 +43,9 @@ public class PhotoFragment extends Fragment {
 
     RecyclerView recyclerView;
     PhotoAdapter photoAdapter;
-    List<Photo> photoList;
+    //    List<Photo> photoList;
+    public static Map<String, ArrayList<Photo>> groupHashMap;
+    List<String> getOnlyDate;
     private static final int MY_READ_PERMISSION_CODE=101;
 
 
@@ -104,10 +108,15 @@ public class PhotoFragment extends Fragment {
             if (isGranted) {
                 // Permission is granted. Continue the action or workflow in your app
                 Log.e("dtee1","OKOK");
-                photoList=VideoGallery.listOfImages(getContext());
+                //Change
                 recyclerView.setHasFixedSize(true);
-                photoAdapter=new PhotoAdapter(getContext(),photoList); //Xong
-                recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),4));
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                List<Photo> photoList=VideoGallery.listOfImages(getContext());
+                getOnlyDate=ShowInforPhotos.onlyGetDate(photoList);
+                getOnlyDate=ShowInforPhotos.sortDateDes(getOnlyDate);
+                groupHashMap=ShowInforPhotos.groupPhotosFollow(photoList,getOnlyDate);
+                photoAdapter=new PhotoAdapter(getContext(),getOnlyDate); //Xong
+                photoAdapter.notifyDataSetChanged();
                 recyclerView.setAdapter(photoAdapter);
             } else {
                 Log.e("dtee","EError");

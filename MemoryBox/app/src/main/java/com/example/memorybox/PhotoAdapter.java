@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,9 +21,9 @@ import java.util.List;
 public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.GridViewHolder> {
 
     Context context;
-    List<Photo> photoList;
-
-    public PhotoAdapter(Context context, List<Photo> photoList) {
+//    List<Photo> photoList;
+    List<String> photoList;
+    public PhotoAdapter(Context context, List<String> photoList) {
         this.context = context;
         this.photoList = photoList;
     }
@@ -36,36 +38,14 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.GridViewHold
 
     @Override
     public void onBindViewHolder(@NonNull GridViewHolder holder, int position) {
-        Photo video= photoList.get(position);
-        //Đổ dữ liệu lên photos tab
-        Glide.with(context).load(video.getThumb()).into(holder.imgVideo);
-
-        //hiển thị ảnh,video chi tiết khi click vào
-        holder.layoutItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String[] parseLink=video.getPath().split("/");
-                String tParseLink=parseLink[parseLink.length-1];
-                String[] tailParseLink=tParseLink.split("\\.");
-                String nameTail=tailParseLink[tailParseLink.length-1];
-
-                if(!nameTail.equals("mp4")) //Là ảnh Xong
-                {
-                    //Display separate Image
-                    Intent intent=new Intent(context,DisplayFullImageActivity.class);
-                    intent.putExtra("path_image",video.getPath());
-                    context.startActivity(intent);
-                }
-                else // Là mp4
-                {
-                    //Display separate Video
-                    Intent intent=new Intent(context,PlayVideoActivity.class);
-                    intent.putExtra("path_video",video.getPath());
-                    context.startActivity(intent);
-                }
-            }
-        });
-//        holder.imageView.setImageResource(photoList.get(position).getPhotoResource());
+        String nameDateVideo=photoList.get(position);
+        holder.tvName.setText(nameDateVideo);
+        List<Photo> arrayListMember=PhotoFragment.groupHashMap.get(nameDateVideo);
+        //Init member adapter
+        MemberAdp adapterMember=new MemberAdp(arrayListMember,context);
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(context,4);
+        holder.rvMember.setLayoutManager(gridLayoutManager);
+        holder.rvMember.setAdapter(adapterMember);
     }
 
     @Override
@@ -75,12 +55,12 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.GridViewHold
 
     public static class GridViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        private ImageView imgVideo;
-        private ConstraintLayout layoutItem;
+        TextView tvName;
+        RecyclerView rvMember;
         public GridViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgVideo = itemView.findViewById(R.id.img_video);
-            layoutItem=itemView.findViewById(R.id.layout_item);
+            tvName=itemView.findViewById(R.id.tv_name);
+            rvMember=itemView.findViewById(R.id.rv_member);
 //            itemView.setOnClickListener(this);
         }
 

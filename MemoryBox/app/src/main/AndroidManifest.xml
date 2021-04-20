@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.memorybox">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -18,7 +19,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MemoryBox">
+        android:theme="@style/Theme.MemoryBox"
+        tools:ignore="ExtraText">
         <activity android:name=".DisplayFullImageActivity"></activity>
         <activity
             android:name=".PlayVideoActivity"
@@ -31,6 +33,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.memorybox"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/paths" />
+        </provider>
     </application>
 
 </manifest>

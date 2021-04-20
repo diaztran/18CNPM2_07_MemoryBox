@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/photo_info_dialog_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    tools:context=".PhotoInformationFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/information"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="1"
+                android:text="Title:" />
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/title_will_be_place_here" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/time" />
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/time_will_be_display_here" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/file_size" />
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/file_size_will_be_displayed_here" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/width" />
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/width_of_photo_will_be_display_here" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/height"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/height_of_photo_will_be_displayed_here" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/orientation"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/orientation_wil_be_displayed_here" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/light_source"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/light_source_will_be_displayed_here" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/path"/>
+
+            <TextView
+                android:layout_weight="1"
+                android:text="@string/path_will_be_displayed_here" />
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

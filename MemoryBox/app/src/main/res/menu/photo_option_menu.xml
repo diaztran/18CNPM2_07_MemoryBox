@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_photo_share"
+        android:icon="@drawable/ic_share"
+        android:title="@string/share_photo"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_photo_delete"
+        android:icon="@drawable/ic_delete"
+        android:title="@string/delete_photo"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_photo_slideshow"
+        android:title="@string/slideshow"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_photo_edit"
+        android:title="@string/edit"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_photo_rotateLeft"
+        android:title="@string/rotate_left"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_photo_rotateRight"
+        android:title="@string/rotate_right"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_photo_addToAlbum"
+        android:title="@string/add_to_album"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_photo_rename"
+        android:title="@string/rename"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_photo_setAs"
+        android:title="@string/set_as"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_photo_print"
+        android:title="@string/print"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_photo_scanQRCode"
+        android:title="@string/scar_qr_code"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_photo_infomation"
+        android:title="@string/information"
+        app:showAsAction="never"/>
+</menu>

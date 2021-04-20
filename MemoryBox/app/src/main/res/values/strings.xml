@@ -26,4 +26,36 @@
     <string name="name_ascending">Name (Ascending)</string>
     <string name="name_descending">Name (Descending)</string>
     <string name="sort_by">Sort by...</string>
+    <string name="share_photo">Share Photo</string>
+    <string name="delete_photo">Delete Photo</string>
+    <string name="slideshow">Slideshow</string>
+    <string name="edit">Edit</string>
+    <string name="rotate_left">Rotate Left</string>
+    <string name="add_to_album">Add To Album</string>
+    <string name="rename">Rename</string>
+    <string name="set_as">Set As...</string>
+    <string name="print">Print</string>
+    <string name="scar_qr_code">Scar QR Code</string>
+    <string name="rotate_right">Rotate Right</string>
+    <string name="show_info">Show Info</string>
+    <string name="edit_photo">Edit Photo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="information">Information</string>
+    <string name="title">Title:</string>
+    <string name="title_will_be_place_here">Title will be displayed here</string>
+    <string name="time">Time:</string>
+    <string name="time_will_be_display_here">Time will be displayed here</string>
+    <string name="file_size">File Size:</string>
+    <string name="file_size_will_be_displayed_here">File size will be displayed here!</string>
+    <string name="width">Width:</string>
+    <string name="width_of_photo_will_be_display_here">Width of photo will be display here</string>
+    <string name="height">Height</string>
+    <string name="height_of_photo_will_be_displayed_here">Height of photo will be displayed here</string>
+    <string name="orientation">Orientation</string>
+    <string name="orientation_wil_be_displayed_here">Orientation wil be displayed here</string>
+    <string name="light_source">Light Source:</string>
+    <string name="light_source_will_be_displayed_here">Light source will be displayed here</string>
+    <string name="path">Path:</string>
+    <string name="path_will_be_displayed_here">Path will be displayed here</string>
 </resources>

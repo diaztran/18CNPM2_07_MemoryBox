@@ -3,6 +3,7 @@ package com.example.memorybox;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.WallpaperManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -21,6 +22,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class DisplayFullImageActivity extends AppCompatActivity {
     ImageView image;
@@ -38,6 +40,28 @@ public class DisplayFullImageActivity extends AppCompatActivity {
 
         String pathImage = getIntent().getStringExtra("path_image");
         Glide.with(this).load(pathImage).asBitmap().into(image);
+
+        toolbar_photo.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.action_photo_setAs:
+                        WallpaperManager myWallpaperManager
+                                = WallpaperManager.getInstance(getApplicationContext());
+                        try {
+                            BitmapDrawable bitmapDrawable = (BitmapDrawable) image.getDrawable();
+                            Bitmap bitmap = bitmapDrawable.getBitmap();
+                            myWallpaperManager.setBitmap(bitmap);
+                        } catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                        return true;
+                    default:
+                        return true;
+                }
+            }
+        });
 
         bottomNavigationView_photo.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

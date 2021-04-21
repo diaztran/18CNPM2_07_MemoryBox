@@ -43,7 +43,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.GridViewHold
         List<Photo> arrayListMember=PhotoFragment.groupHashMap.get(nameDateVideo);
         //Init member adapter
         MemberAdp adapterMember=new MemberAdp(arrayListMember,context);
-        GridLayoutManager gridLayoutManager=new GridLayoutManager(context,4);
+        GridLayoutManager gridLayoutManager=new GridLayoutManager(context,3);
         holder.rvMember.setLayoutManager(gridLayoutManager);
         holder.rvMember.setAdapter(adapterMember);
     }

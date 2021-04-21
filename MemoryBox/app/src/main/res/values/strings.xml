@@ -58,4 +58,7 @@
     <string name="light_source_will_be_displayed_here">Light source will be displayed here</string>
     <string name="path">Path:</string>
     <string name="path_will_be_displayed_here">Path will be displayed here</string>
+    <string name="add_to">Add To</string>
+    <string name="share_video">Share Video</string>
+    <string name="duration">Duration</string>
 </resources>

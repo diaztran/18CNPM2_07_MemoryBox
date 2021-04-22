@@ -31,12 +31,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class DisplayFullImageActivity extends AppCompatActivity {
     ImageView image;
     Toolbar toolbar_photo;
     BottomNavigationView bottomNavigationView_photo;
-
+    private String pathImage;
+    private ArrayList<String> listInfoPhoto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,7 @@ public class DisplayFullImageActivity extends AppCompatActivity {
         bottomNavigationView_photo = findViewById(R.id.navigation_bar_photo);
         setSupportActionBar(toolbar_photo);
 
-        String pathImage = getIntent().getStringExtra("path_image");
+        pathImage = getIntent().getStringExtra("path_image");
         Glide.with(this).load(pathImage).asBitmap().into(image);
 
         toolbar_photo.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -133,6 +135,7 @@ public class DisplayFullImageActivity extends AppCompatActivity {
                         shareImage(bitmap);
                         return true;
                     case R.id.photo_navigation_info:
+                        listInfoPhoto=ShowInforPhotos.listOfImageVideos(getApplicationContext(),pathImage);
                         FragmentManager fm = getSupportFragmentManager();
                         PhotoInformationFragment photoInformationFragment = PhotoInformationFragment.newInstance("Photo Information", "Dialog");
                         photoInformationFragment.show(fm, null);
@@ -202,4 +205,14 @@ public class DisplayFullImageActivity extends AppCompatActivity {
         }
     }
 
+
+    //Using to send pathImage to PhotoInformation
+    public String getPathImage()
+    {
+        return pathImage;
+    }
+
+    public ArrayList<String> getListInfoPhoto() {
+        return listInfoPhoto;
+    }
 }

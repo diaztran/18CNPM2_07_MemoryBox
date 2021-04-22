@@ -42,7 +42,6 @@ public class ShowInforPhotos {
             ArrayList<Integer> dimension=handleDimension(pathPhotos,"1"); //Xong
             String dimesionImage= dimension.get(0)+" X "+dimension.get(1); //Xong
             ArrayList<String> exifInfor=handleExif(context,pathPhotos);
-
             lstInfor.add(nameImage);
             lstInfor.add(pathImage);
             lstInfor.add(dateTakenImage);
@@ -155,16 +154,40 @@ public class ShowInforPhotos {
             String whiteBalance=checkNotNull(exif.getAttribute(ExifInterface.TAG_WHITE_BALANCE)); //get white Balance
 
 //            //get Location
-            float[] latLong=new float[2];
-            boolean hasLatLong = exif.getLatLong(latLong);
-            String addressImage="unknown";
-            if (hasLatLong) {
-                Geocoder geocoder;
-                List<Address> addresses;
-                geocoder=new Geocoder(context, Locale.getDefault());
-                addresses=geocoder.getFromLocation(latLong[0],latLong[1],1);
-                addressImage = addresses.get(0).getAddressLine(0);
+            String addressLocation="unknown";
+            if(!pathpath.endsWith(".mp4"))
+            {
+
+                float[] latLong=new float[2];
+                boolean hasLatLong = exif.getLatLong(latLong);
+
+                if (hasLatLong) {
+                    Geocoder geocoder;
+                    List<Address> addresses;
+                    geocoder=new Geocoder(context, Locale.getDefault());
+                    addresses=geocoder.getFromLocation(latLong[0],latLong[1],1);
+                    addressLocation = addresses.get(0).getAddressLine(0);
+                }
             }
+            else
+            {
+                MediaMetadataRetriever mediaMetadataRetriever=new MediaMetadataRetriever();
+                mediaMetadataRetriever.setDataSource(pathpath);
+                String locationVideo=mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_LOCATION);
+                if(locationVideo!=null)
+                {
+                    locationVideo=locationVideo.replace("+"," ");
+                    locationVideo=locationVideo.replace("/","");
+                    String[]token=locationVideo.split(" ");
+                    Geocoder geocoder;
+                    List<Address> addresses;
+                    geocoder=new Geocoder(context, Locale.getDefault());
+                    addresses=geocoder.getFromLocation(Float.parseFloat(token[1]),Float.parseFloat(token[2]),1);
+                    addressLocation = addresses.get(0).getAddressLine(0);
+                }
+
+            }
+
 
             exifInfor.add(orientation);
             exifInfor.add(makeDevice);
@@ -174,7 +197,7 @@ public class ShowInforPhotos {
             exifInfor.add(isoValue);
             exifInfor.add(shutterSpeed);
             exifInfor.add(whiteBalance);
-            exifInfor.add(addressImage);
+            exifInfor.add(addressLocation);
         } catch (IOException e) {
             e.printStackTrace();
         }

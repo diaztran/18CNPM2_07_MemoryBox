@@ -52,7 +52,6 @@
     <string name="width_of_photo_will_be_display_here">Width of photo will be display here</string>
     <string name="height">Height</string>
     <string name="height_of_photo_will_be_displayed_here">Height of photo will be displayed here</string>
-    <string name="orientation">Orientation</string>
     <string name="orientation_wil_be_displayed_here">Orientation wil be displayed here</string>
     <string name="light_source">Light Source:</string>
     <string name="light_source_will_be_displayed_here">Light source will be displayed here</string>
@@ -61,4 +60,27 @@
     <string name="add_to">Add To</string>
     <string name="share_video">Share Video</string>
     <string name="duration">Duration</string>
+
+    <!--Chung image vs video    -->
+    <string name="nameMedia">Name:</string>
+    <string name="pathMedia">Path:</string>
+    <string name="dateTakenMedia">Date:</string>
+    <string name="sizeMedia">Size:</string>
+    <string name="dimensionMedia">Dimension:</string>
+
+    <!--Detail name information image     -->
+    <string name="orientation">Orientation:</string>
+    <string name="makeDevice">Make device:</string>
+    <string name="device">Device:</string>
+    <string name="apertureValue">Aperture:</string>
+    <string name="forcalLenght">Forcal:</string>
+    <string name="isoValue">Iso:</string>
+    <string name="shutterSpeed">Shutter Speed:</string>
+    <string name="whiteBalance">White Balance:</string>
+    <!--Detail name information video    -->
+    <string name="displayDuration">Duration:</string>
+    <!--Chung image vs video    -->
+    <string name="addressMedia">Location:</string>
+
+    <string name="inputDetailInfor">Input detail Information</string>
 </resources>

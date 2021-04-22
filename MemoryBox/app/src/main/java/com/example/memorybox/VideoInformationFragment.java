@@ -4,11 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,7 +28,8 @@ public class VideoInformationFragment extends DialogFragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    //    Value
+    TextView nameMedia,pathMedia,dateTakenMedia,sizeMedia,dimensionMedia,displayDuration,addressMedia;
     public VideoInformationFragment() {
         // Required empty public constructor
     }
@@ -60,12 +64,37 @@ public class VideoInformationFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_video_information, container, false);
+        // Inflate the layout for this fragmentV
+        View v=inflater.inflate(R.layout.fragment_video_information, container, false);
+        PlayVideoActivity activity= (PlayVideoActivity) getActivity();
+        ArrayList<String> listInfoPhoto=activity.getListInfoVideo();
+        nameMedia=v.findViewById(R.id.nameMedia);
+        pathMedia=v.findViewById(R.id.pathMedia);
+        dateTakenMedia=v.findViewById(R.id.dateTakenMedia);
+        sizeMedia=v.findViewById(R.id.sizeMedia);
+        dimensionMedia=v.findViewById(R.id.dimensionMedia);
+        displayDuration=v.findViewById(R.id.displayDuration);
+        addressMedia=v.findViewById(R.id.addressMedia);
+
+        nameMedia.setText(listInfoPhoto.get(0));
+        pathMedia.setText(listInfoPhoto.get(1));
+        dateTakenMedia.setText(listInfoPhoto.get(2));
+        sizeMedia.setText(listInfoPhoto.get(3));
+        dimensionMedia.setText(listInfoPhoto.get(4));
+        displayDuration.setText(listInfoPhoto.get(5));
+        addressMedia.setText(listInfoPhoto.get(6));
+        return v;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        int dialogWidth = getResources().getDisplayMetrics().widthPixels;
+        int dialogHeight = getResources().getDisplayMetrics().heightPixels;
+        getDialog().getWindow().setLayout(dialogWidth,dialogHeight);
     }
 }

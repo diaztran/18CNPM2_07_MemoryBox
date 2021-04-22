@@ -1,8 +1,10 @@
 package com.example.memorybox;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -113,7 +115,6 @@ public class PhotoFragment extends Fragment {
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 List<Photo> photoList=VideoGallery.listOfImages(getContext());
                 getOnlyDate=ShowInforPhotos.onlyGetDate(photoList);
-                getOnlyDate=ShowInforPhotos.sortDateDes(getOnlyDate);
                 groupHashMap=ShowInforPhotos.groupPhotosFollow(photoList,getOnlyDate);
                 photoAdapter=new PhotoAdapter(getContext(),getOnlyDate); //Xong
                 photoAdapter.notifyDataSetChanged();
@@ -155,6 +156,7 @@ public class PhotoFragment extends Fragment {
                 return true;
         }
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

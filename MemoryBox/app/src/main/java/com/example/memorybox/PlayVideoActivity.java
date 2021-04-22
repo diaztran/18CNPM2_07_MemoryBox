@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import hb.xvideoplayer.MxVideoPlayer;
 import hb.xvideoplayer.MxVideoPlayerWidget;
@@ -28,12 +29,13 @@ public class PlayVideoActivity extends AppCompatActivity {
 
     Toolbar toolbar_video;
     BottomNavigationView bottomNavigationView_video;
-
+    private ArrayList<String> listInfoVideo;
+    private String pathVideo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_video);
-        String pathVideo=getIntent().getStringExtra("path_video");
+        pathVideo=getIntent().getStringExtra("path_video");
 
         MxVideoPlayerWidget videoPlayerWidget = findViewById(R.id.mpw_video_player);
         videoPlayerWidget.startPlay(pathVideo, MxVideoPlayer.SCREEN_LAYOUT_NORMAL,"gaga");
@@ -47,6 +49,7 @@ public class PlayVideoActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.video_navigation_info:
+                        listInfoVideo=ShowInforPhotos.listOfImageVideos(getApplicationContext(),pathVideo);
                         FragmentManager fm = getSupportFragmentManager();
                         VideoInformationFragment videoInformationFragment = VideoInformationFragment.newInstance("Video Information", "Dialog");
                         videoInformationFragment.show(fm, null);
@@ -89,5 +92,16 @@ public class PlayVideoActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.video_option_menu, menu);
         return true;
+    }
+    //Using to send pathVideo to VideoInformation
+
+
+
+    public String getPathVideo() {
+        return pathVideo;
+    }
+
+    public ArrayList<String> getListInfoVideo() {
+        return listInfoVideo;
     }
 }

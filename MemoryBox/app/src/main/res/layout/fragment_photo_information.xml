@@ -16,100 +16,253 @@
         android:text="@string/information"
         android:textSize="24sp"
         android:textStyle="bold" />
-
-    <TableLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/nameMedia" />
+        <TextView
+            android:id="@+id/nameMedia"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/inputDetailInfor" />
+    </LinearLayout>
 
-        <TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/pathMedia" />
+        <TextView
+            android:id="@+id/pathMedia"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/inputDetailInfor" />
+    </LinearLayout>
 
-            <TextView
-                android:layout_weight="1"
-                android:text="@string/title" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/dateTakenMedia" />
+        <TextView
+            android:id="@+id/dateTakenMedia"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/inputDetailInfor" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/sizeMedia" />
+        <TextView
+            android:id="@+id/sizeMedia"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/inputDetailInfor" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/dimensionMedia"/>
+        <TextView
+            android:id="@+id/dimensionMedia"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/inputDetailInfor" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/orientation"/>
+        <TextView
+            android:id="@+id/orientation"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/inputDetailInfor" />
+    </LinearLayout>
 
-            <TextView
-                android:layout_weight="1"
-                android:text="@string/title_will_be_place_here" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/makeDevice"/>
+        <TextView
+            android:id="@+id/makeDevice"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/inputDetailInfor" />
+    </LinearLayout>
 
-        </TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/device"/>
+        <TextView
+            android:id="@+id/device"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/inputDetailInfor" />
+    </LinearLayout>
 
-        <TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/apertureValue"/>
+        <TextView
+            android:id="@+id/apertureValue"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/inputDetailInfor" />
+    </LinearLayout>
 
-            <TextView
-                android:layout_weight="1"
-                android:text="@string/time" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/forcalLenght"/>
+        <TextView
+            android:id="@+id/forcalLenght"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/inputDetailInfor" />
+    </LinearLayout>
 
-            <TextView
-                android:layout_weight="1"
-                android:text="@string/time_will_be_display_here" />
-        </TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/isoValue"/>
+        <TextView
+            android:id="@+id/isoValue"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/inputDetailInfor" />
+    </LinearLayout>
 
-        <TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/shutterSpeed"/>
+        <TextView
+            android:id="@+id/shutterSpeed"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/inputDetailInfor" />
+    </LinearLayout>
 
-            <TextView
-                android:layout_weight="1"
-                android:text="@string/file_size" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/whiteBalance"/>
+        <TextView
+            android:id="@+id/whiteBalance"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/inputDetailInfor" />
+    </LinearLayout>
 
-            <TextView
-                android:layout_weight="1"
-                android:text="@string/file_size_will_be_displayed_here" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_weight="1"
-                android:text="@string/width" />
-
-            <TextView
-                android:layout_weight="1"
-                android:text="@string/width_of_photo_will_be_display_here" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_weight="1"
-                android:text="@string/height"/>
-
-            <TextView
-                android:layout_weight="1"
-                android:text="@string/height_of_photo_will_be_displayed_here" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_weight="1"
-                android:text="@string/orientation"/>
-
-            <TextView
-                android:layout_weight="1"
-                android:text="@string/orientation_wil_be_displayed_here" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_weight="1"
-                android:text="@string/light_source"/>
-
-            <TextView
-                android:layout_weight="1"
-                android:text="@string/light_source_will_be_displayed_here" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_weight="1"
-                android:text="@string/path"/>
-
-            <TextView
-                android:layout_weight="1"
-                android:text="@string/path_will_be_displayed_here" />
-        </TableRow>
-
-    </TableLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/addressMedia"/>
+        <TextView
+            android:id="@+id/addressMedia"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/inputDetailInfor" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -6,10 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,9 +27,15 @@ public class PhotoInformationFragment extends DialogFragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+//    Value
+TextView nameMedia,pathMedia,dateTakenMedia,sizeMedia,dimensionMedia,orientation,makeDevice,device,aperatureValue,forcalLenght,isoValue,
+        shutterSpeed,whiteBalance,addressMedia;
+
+//
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
 
     public PhotoInformationFragment() {
         // Required empty public constructor
@@ -62,11 +72,54 @@ public class PhotoInformationFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_photo_information, container, false);
+        View v=inflater.inflate(R.layout.fragment_photo_information, container, false);
+        DisplayFullImageActivity activity=(DisplayFullImageActivity) getActivity();
+        ArrayList<String> listInfoPhoto=activity.getListInfoPhoto();
+
+        nameMedia=v.findViewById(R.id.nameMedia);
+        pathMedia=v.findViewById(R.id.pathMedia);
+        dateTakenMedia=v.findViewById(R.id.dateTakenMedia);
+        sizeMedia=v.findViewById(R.id.sizeMedia);
+        dimensionMedia=v.findViewById(R.id.dimensionMedia);
+        orientation=v.findViewById(R.id.orientation);
+        makeDevice=v.findViewById(R.id.makeDevice);
+        device=v.findViewById(R.id.device);
+        aperatureValue=v.findViewById(R.id.apertureValue);
+        forcalLenght=v.findViewById(R.id.forcalLenght);
+        isoValue=v.findViewById(R.id.isoValue);
+        shutterSpeed=v.findViewById(R.id.shutterSpeed);
+        whiteBalance=v.findViewById(R.id.whiteBalance);
+        addressMedia=v.findViewById(R.id.addressMedia);
+
+        nameMedia.setText(listInfoPhoto.get(0));
+        pathMedia.setText(listInfoPhoto.get(1));
+        dateTakenMedia.setText(listInfoPhoto.get(2));
+        sizeMedia.setText(listInfoPhoto.get(3));
+        dimensionMedia.setText(listInfoPhoto.get(4));
+        orientation.setText(listInfoPhoto.get(5));
+        makeDevice.setText(listInfoPhoto.get(6));
+        device.setText(listInfoPhoto.get(7));
+        aperatureValue.setText(listInfoPhoto.get(8));
+        forcalLenght.setText(listInfoPhoto.get(9));
+        isoValue.setText(listInfoPhoto.get(10));
+        shutterSpeed.setText(listInfoPhoto.get(11));
+        whiteBalance.setText(listInfoPhoto.get(12));
+        addressMedia.setText(listInfoPhoto.get(13));
+        return v;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        int dialogWidth = getResources().getDisplayMetrics().widthPixels;
+        int dialogHeight = getResources().getDisplayMetrics().heightPixels;
+        getDialog().getWindow().setLayout(dialogWidth,dialogHeight);
     }
 }

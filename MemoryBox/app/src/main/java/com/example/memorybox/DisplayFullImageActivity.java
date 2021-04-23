@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.WallpaperManager;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -14,7 +13,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
@@ -39,6 +38,7 @@ public class DisplayFullImageActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView_photo;
     private String pathImage;
     private ArrayList<String> listInfoPhoto;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +49,14 @@ public class DisplayFullImageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar_photo);
 
         pathImage = getIntent().getStringExtra("path_image");
+
+        Uri imageUri = FileProvider.getUriForFile(
+                DisplayFullImageActivity.this,
+                "com.example.memorybox.fileprovider", //(use your app signature + ".provider" )
+                new File(pathImage));
+        Log.e("Find Null", "This is image_uri" + imageUri);
+        if (imageUri == null) {Log.e("Find Null","image uri is null");}
+
         Glide.with(this).load(pathImage).asBitmap().into(image);
 
         toolbar_photo.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -60,12 +68,22 @@ public class DisplayFullImageActivity extends AppCompatActivity {
                         setAsWallpaper();
                         return true;
                     case R.id.action_photo_delete:
-                        File target = new File(pathImage);
-                        Log.d(" target_path", "" + pathImage);
-                        if (target.exists() && target.isFile() && target.canWrite()) {
-                            target.delete();
-                            Log.d("d_file", "" + target.getName());
-                        }
+                        File imagePathFile = new File(pathImage);
+                        if (imagePathFile.delete()) {
+                            Toast.makeText(DisplayFullImageActivity.this, "Photo Deleted", Toast.LENGTH_SHORT).show();
+                        } else
+                            Toast.makeText(DisplayFullImageActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                        ;
+                        onBackPressed();
+                        finish();
+                        return true;
+
+                    case R.id.action_photo_edit:
+//                        Intent intent = new Intent(DisplayFullImageActivity.this, PhotoEditorActivity.class);
+                        Intent editIntent = new Intent(Intent.ACTION_EDIT);
+                        editIntent.setDataAndType(imageUri, "image/*");
+                        editIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        startActivity(Intent.createChooser(editIntent, null));
                         return true;
 
                     case R.id.action_photo_share:
@@ -135,7 +153,7 @@ public class DisplayFullImageActivity extends AppCompatActivity {
                         shareImage(bitmap);
                         return true;
                     case R.id.photo_navigation_info:
-                        listInfoPhoto=ShowInforPhotos.listOfImageVideos(getApplicationContext(),pathImage);
+                        listInfoPhoto = ShowInforPhotos.listOfImageVideos(getApplicationContext(), pathImage);
                         FragmentManager fm = getSupportFragmentManager();
                         PhotoInformationFragment photoInformationFragment = PhotoInformationFragment.newInstance("Photo Information", "Dialog");
                         photoInformationFragment.show(fm, null);
@@ -207,8 +225,7 @@ public class DisplayFullImageActivity extends AppCompatActivity {
 
 
     //Using to send pathImage to PhotoInformation
-    public String getPathImage()
-    {
+    public String getPathImage() {
         return pathImage;
     }
 

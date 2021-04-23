@@ -48,6 +48,7 @@ public class PhotoFragment extends Fragment {
     //    List<Photo> photoList;
     public static Map<String, ArrayList<Photo>> groupHashMap;
     List<String> getOnlyDate;
+    List<Photo> photoList;
     private static final int MY_READ_PERMISSION_CODE=101;
 
 
@@ -100,6 +101,8 @@ public class PhotoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
+
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_photo, container, false);
         recyclerView = v.findViewById(R.id.recyclerview_photo);
@@ -113,7 +116,7 @@ public class PhotoFragment extends Fragment {
                 //Change
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                List<Photo> photoList=VideoGallery.listOfImages(getContext());
+                photoList=VideoGallery.listOfImages(getContext());
                 getOnlyDate=ShowInforPhotos.onlyGetDate(photoList);
                 groupHashMap=ShowInforPhotos.groupPhotosFollow(photoList,getOnlyDate);
                 photoAdapter=new PhotoAdapter(getContext(),getOnlyDate); //Xong
@@ -145,6 +148,9 @@ public class PhotoFragment extends Fragment {
                 Intent cameraIntent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
                 getActivity().startActivityForResult(cameraIntent, ACTION_USE_CAMERA_ALL_FEATURE);
                 Log.e("Option", "Camera Selected");
+                photoList.add(new Photo());
+                getOnlyDate.add("");
+                photoAdapter.notifyDataSetChanged();
                 return true;
             case R.id.action_main_select:
                 Log.e("Option", "Select Selected");

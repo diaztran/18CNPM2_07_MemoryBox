@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setSupportActionBar(findViewById(R.id.actionbar_main));
         addControls();
+        viewPagerAdapter_main.notifyDataSetChanged();
      }
 
     private void addControls() {

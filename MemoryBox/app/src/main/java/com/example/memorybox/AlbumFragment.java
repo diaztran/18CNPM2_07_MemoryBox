@@ -31,8 +31,8 @@ import java.util.List;
  */
 public class AlbumFragment extends Fragment {
     RecyclerView recyclerView;
-    ItemAlbumAdapter itemAlbumAdapter;
-    List<Bucket> buckets;
+    AlbumAdapter albumAdapter;
+    List<Album> buckets;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -80,7 +80,7 @@ public class AlbumFragment extends Fragment {
         // Inflate the layout for this fragment
         Log.e("lofi","oncreateView");
         View v=inflater.inflate(R.layout.fragment_album, container, false);
-        recyclerView=v.findViewById(R.id.recyclerview_albulm);
+        recyclerView=v.findViewById(R.id.recyclerview_album);
         Log.e("lofi1","oncreateView1");
         ActivityResultLauncher<String> requestPermissionLauncher =registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
             Log.e("lofi2","in request");
@@ -94,10 +94,10 @@ public class AlbumFragment extends Fragment {
                 buckets=getImageBuckets(getContext());
                 Log.e("lofiBucket",buckets.size()+"");
 
-                itemAlbumAdapter=new ItemAlbumAdapter(getContext(),buckets); //Xong
+                albumAdapter =new AlbumAdapter(getContext(),buckets); //Xong
                 Log.e("lofiBucketaffter",buckets.size()+"");
-                itemAlbumAdapter.notifyDataSetChanged();
-                recyclerView.setAdapter(itemAlbumAdapter);
+                albumAdapter.notifyDataSetChanged();
+                recyclerView.setAdapter(albumAdapter);
             } else {
 //                Log.e("dtee","EError");
             }
@@ -106,8 +106,8 @@ public class AlbumFragment extends Fragment {
         return v;
     }
 
-    public static List<Bucket> getImageBuckets(Context mContext){
-        List<Bucket> buckets = new ArrayList<>();
+    public static List<Album> getImageBuckets(Context mContext){
+        List<Album> buckets = new ArrayList<>();
         Uri uri= MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
         String [] projection = {MediaStore.Images.Media.BUCKET_DISPLAY_NAME, MediaStore.Images.Media.DATA};
         List<String> nameAlbum=new ArrayList<>();
@@ -120,7 +120,7 @@ public class AlbumFragment extends Fragment {
                 file = new File(fisrtImage);
                 String bucketName;
                 if (file.exists()&&!nameAlbum.contains(bucketPath)) {
-                    buckets.add(new Bucket(bucketPath, fisrtImage));
+                    buckets.add(new Album(bucketPath, fisrtImage));
                     nameAlbum.add(bucketPath);
                 }
             }

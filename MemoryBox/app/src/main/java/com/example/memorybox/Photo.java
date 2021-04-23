@@ -10,6 +10,9 @@ public class Photo {
         this.thumb = thumb;
     }
 
+    public Photo() {
+    }
+
     public String getPath() {
         return path;
     }

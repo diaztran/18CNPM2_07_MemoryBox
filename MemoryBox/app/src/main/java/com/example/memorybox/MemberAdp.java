@@ -2,6 +2,7 @@ package com.example.memorybox;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,20 +47,23 @@ public class MemberAdp extends RecyclerView.Adapter<MemberAdp.ViewHolder>  {
                 String[] tailParseLink=tParseLink.split("\\.");
                 String nameTail=tailParseLink[tailParseLink.length-1];
 
+                Intent intent;
                 if(!nameTail.equals("mp4")) //Là ảnh Xong
                 {
                     //Display separate Image
-                    Intent intent=new Intent(context,DisplayFullImageActivity.class);
-                    intent.putExtra("path_image",video.getPath());
+                    intent = new Intent(context, DisplayFullImageActivity.class);
+                    intent.putExtra("path_image", video.getPath());
+                    if (intent == null) {Log.e("Find Null", "Intent in memAdap is Null");}
                     context.startActivity(intent);
+;
                 }
                 else // Là mp4
                 {
                     //Display separate Video
-                    Intent intent=new Intent(context,PlayVideoActivity.class);
+                    intent = new Intent(context, PlayVideoActivity.class);
                     intent.putExtra("path_video",video.getPath());
-                    context.startActivity(intent);
                 }
+                context.startActivity(intent);
             }
         });
     }

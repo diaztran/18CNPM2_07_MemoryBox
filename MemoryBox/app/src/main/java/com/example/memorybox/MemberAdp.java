@@ -42,6 +42,8 @@ public class MemberAdp extends RecyclerView.Adapter<MemberAdp.ViewHolder>  {
         holder.layoutItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                PhotoFragment.positionPhotos=position;
+                PhotoFragment.getDatePhotos=ShowInforPhotos.convertPathToDate(video);
                 String[] parseLink=video.getPath().split("/");
                 String tParseLink=parseLink[parseLink.length-1];
                 String[] tailParseLink=tParseLink.split("\\.");

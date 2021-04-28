@@ -68,12 +68,14 @@ public class DisplayFullImageActivity extends AppCompatActivity {
                         setAsWallpaper();
                         return true;
                     case R.id.action_photo_delete:
-                        File imagePathFile = new File(pathImage);
-                        if (imagePathFile.delete()) {
-                            Toast.makeText(DisplayFullImageActivity.this, "Photo Deleted", Toast.LENGTH_SHORT).show();
-                        } else
-                            Toast.makeText(DisplayFullImageActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                        ;
+                        PhotoFragment.groupHashMap.get(PhotoFragment.getDatePhotos).remove(PhotoFragment.positionPhotos);
+                        PhotoFragment.photoAdapter.notifyDataSetChanged();
+//                        File imagePathFile = new File(pathImage);
+//                        if (imagePathFile.delete()) {
+//                            Toast.makeText(DisplayFullImageActivity.this, "Photo Deleted", Toast.LENGTH_SHORT).show();
+//                        } else
+//                            Toast.makeText(DisplayFullImageActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+//                        ;
                         onBackPressed();
                         finish();
                         return true;

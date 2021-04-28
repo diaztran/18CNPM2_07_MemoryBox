@@ -44,13 +44,14 @@ public class PhotoFragment extends Fragment {
     public static int ACTION_USE_CAMERA_ALL_FEATURE = 1;
 
     RecyclerView recyclerView;
-    PhotoAdapter photoAdapter;
+    public static PhotoAdapter photoAdapter;
     //    List<Photo> photoList;
     public static Map<String, ArrayList<Photo>> groupHashMap;
     List<String> getOnlyDate;
     List<Photo> photoList;
     private static final int MY_READ_PERMISSION_CODE=101;
-
+    public static int positionPhotos=-1;
+    public static String getDatePhotos="";
 
 
     // TODO: Rename parameter arguments, choose names that match

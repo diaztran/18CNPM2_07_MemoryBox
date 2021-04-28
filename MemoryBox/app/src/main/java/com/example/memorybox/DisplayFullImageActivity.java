@@ -30,6 +30,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 
 public class DisplayFullImageActivity extends AppCompatActivity {
@@ -38,7 +39,8 @@ public class DisplayFullImageActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView_photo;
     private String pathImage;
     private ArrayList<String> listInfoPhoto;
-
+    public static String pathImageToDelete;
+    private Photo photo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +49,11 @@ public class DisplayFullImageActivity extends AppCompatActivity {
         toolbar_photo = findViewById(R.id.toolbar_photo);
         bottomNavigationView_photo = findViewById(R.id.navigation_bar_photo);
         setSupportActionBar(toolbar_photo);
-
-        pathImage = getIntent().getStringExtra("path_image");
+        photo=new Photo(getIntent().getStringExtra("path_image"),getIntent().getStringExtra("thumb_image"));
+        Log.e("lofi path image",getIntent().getStringExtra("path_image"));
+        Log.e("lofi thumb image",getIntent().getStringExtra("thumb_image"));
+//        Log.e("lofiIndex",MemberAdp.arrayListMember.indexOf(photo)+"");
+        pathImage = photo.getPath();
 
         Uri imageUri = FileProvider.getUriForFile(
                 DisplayFullImageActivity.this,
@@ -68,14 +73,18 @@ public class DisplayFullImageActivity extends AppCompatActivity {
                         setAsWallpaper();
                         return true;
                     case R.id.action_photo_delete:
-                        PhotoFragment.groupHashMap.get(PhotoFragment.getDatePhotos).remove(PhotoFragment.positionPhotos);
-                        PhotoFragment.photoAdapter.notifyDataSetChanged();
-//                        File imagePathFile = new File(pathImage);
-//                        if (imagePathFile.delete()) {
+                        File imagePathFile = new File(pathImage);
+//                        if (imagePathFile.delete())
+//                        {
 //                            Toast.makeText(DisplayFullImageActivity.this, "Photo Deleted", Toast.LENGTH_SHORT).show();
 //                        } else
+//                        {
 //                            Toast.makeText(DisplayFullImageActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-//                        ;
+//                        }
+                        PhotoFragment.groupHashMap.get(PhotoFragment.getDatePhotos).remove(PhotoFragment.positionPhotos);
+                        PhotoFragment.photoAdapter.notifyDataSetChanged();
+//                         Toast.makeText(DisplayFullImageActivity.this,"position photos"+PhotoFragment.positionPhotos+"\ndate photo"+PhotoFragment.getDatePhotos,Toast.LENGTH_LONG).show();
+
                         onBackPressed();
                         finish();
                         return true;

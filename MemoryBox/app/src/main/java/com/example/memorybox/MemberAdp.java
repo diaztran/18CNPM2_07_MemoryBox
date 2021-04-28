@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -19,12 +20,14 @@ import java.util.List;
 public class MemberAdp extends RecyclerView.Adapter<MemberAdp.ViewHolder>  {
     List<Photo> arrayListMember;
     Context context;
-
     public MemberAdp(List<Photo> arrayListMember, Context context) {
         this.arrayListMember = arrayListMember;
         this.context = context;
     }
+    public MemberAdp()
+    {
 
+    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,25 +41,34 @@ public class MemberAdp extends RecyclerView.Adapter<MemberAdp.ViewHolder>  {
 //        holder.tvName.setText(arrayListMember.get(position));
         Photo video= arrayListMember.get(position);
         Glide.with(context).load(video.getThumb()).into(holder.img_video);
+//        Xóa hình
+
+
 //        hiển thị ảnh,video chi tiết khi click vào
         holder.layoutItem.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 PhotoFragment.positionPhotos=position;
                 PhotoFragment.getDatePhotos=ShowInforPhotos.convertPathToDate(video);
+//                Log.e("position Image",""+PhotoFragment.positionImage);
                 String[] parseLink=video.getPath().split("/");
                 String tParseLink=parseLink[parseLink.length-1];
                 String[] tailParseLink=tParseLink.split("\\.");
                 String nameTail=tailParseLink[tailParseLink.length-1];
 
+                int p=arrayListMember.indexOf(video);
                 Intent intent;
                 if(!nameTail.equals("mp4")) //Là ảnh Xong
                 {
                     //Display separate Image
+                    Log.e("lofi arr",video.getPath());
                     intent = new Intent(context, DisplayFullImageActivity.class);
                     intent.putExtra("path_image", video.getPath());
+                    intent.putExtra("thumb_image",video.getThumb());
+
                     if (intent == null) {Log.e("Find Null", "Intent in memAdap is Null");}
-                    context.startActivity(intent);
+//                    context.startActivity(intent);
 ;
                 }
                 else // Là mp4
@@ -64,10 +76,22 @@ public class MemberAdp extends RecyclerView.Adapter<MemberAdp.ViewHolder>  {
                     //Display separate Video
                     intent = new Intent(context, PlayVideoActivity.class);
                     intent.putExtra("path_video",video.getPath());
+                    intent.putExtra("thumb_video",video.getThumb());
                 }
                 context.startActivity(intent);
             }
+
         });
+///////////////////////////
+//        holder.layoutItem.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//
+//        });
+
     }
 
     @Override
@@ -75,6 +99,17 @@ public class MemberAdp extends RecyclerView.Adapter<MemberAdp.ViewHolder>  {
         return arrayListMember.size();
     }
 
+    public void removeItem(int position)
+    {
+        Log.e("star 1",""+position);
+        Log.e("star 11",""+arrayListMember.size());
+        arrayListMember.remove(position);
+        notifyDataSetChanged();
+        this.notifyItemRemoved(position);
+//        notifyItemRangeChanged(position,getItemCount());
+        Log.e("star 21",""+arrayListMember.size());
+        Log.e("star 2",""+position);
+    }
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img_video;
         ConstraintLayout layoutItem;

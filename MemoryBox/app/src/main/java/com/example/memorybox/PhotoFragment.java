@@ -45,14 +45,12 @@ public class PhotoFragment extends Fragment {
 
     RecyclerView recyclerView;
     public static PhotoAdapter photoAdapter;
-    //    List<Photo> photoList;
     public static Map<String, ArrayList<Photo>> groupHashMap;
     List<String> getOnlyDate;
     List<Photo> photoList;
     private static final int MY_READ_PERMISSION_CODE=101;
     public static int positionPhotos=-1;
     public static String getDatePhotos="";
-
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

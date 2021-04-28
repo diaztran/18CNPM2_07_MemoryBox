@@ -5,11 +5,6 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="blue_color_picker">#0066FF</color>
@@ -23,5 +18,16 @@
     <color name="yellow_color_picker">#FBE870</color>
     <color name="yellow_green_color_picker">#C5E17A</color>
     <color name="tool_bg">#151414</color>
-    <color name="semi_black_transparent">#99000000</color>
+    <color name="semi_black_transparent">#99000000</color>s
+    <color name="colorPrimary">#41D3BD</color>
+    <color name="colorPrimaryDark">#41D3BD</color>
+    <color name="colorAccent">#FDA14F</color>
+    <color name="colorTextIcons">#FFFFFF</color>
+    <color name="colorTextPrimary">#212121</color>
+    <color name="colorTextSecondary">#757575</color>
+    <color name="colorRatingActive">#FDA14F</color>
+    <color name="colorRatingInactive">#C9C9D1</color>
+    <color name="colorBackground">#EEEEEE</color>
+    <color name="colorUnchecked">#ADD8E6</color>
+    <color name="colorChecked">#0000FF</color>
 </resources>

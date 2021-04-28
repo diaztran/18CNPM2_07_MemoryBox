@@ -98,5 +98,6 @@
     <string name="done">Done</string>
     <string name="app_intent_name">PhotoEditor</string>
     <string name="select_image">Select Image</string>
+    <string name="gallery_image">Gallery image</string>
 
 </resources>

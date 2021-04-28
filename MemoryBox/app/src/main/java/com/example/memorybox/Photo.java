@@ -10,6 +10,8 @@ public class Photo {
         this.thumb = thumb;
     }
 
+    Boolean isSelected = false;
+
     public Photo() {
     }
 
@@ -29,7 +31,13 @@ public class Photo {
         this.thumb = thumb;
     }
 
+    public Boolean getSelected() {
+        return isSelected;
+    }
 
+    public void setSelected(Boolean selected) {
+        isSelected = selected;
+    }
 
 //    public LocalDate getTimeCreate() {
 //        return timeCreate;

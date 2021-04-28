@@ -26,6 +26,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.time.LocalDate;
@@ -38,19 +39,22 @@ import java.util.Map;
  * Use the {@link PhotoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PhotoFragment extends Fragment {
+public class PhotoFragment extends Fragment implements PhotoListener{
     public static int REQUEST_IMAGE_CAPTURE = 1;
     public static int ACTION_TAKE_VIDEO_RESULT_CODE = 1;
     public static int ACTION_USE_CAMERA_ALL_FEATURE = 1;
 
     RecyclerView recyclerView;
+    Button addToAlbum;
+    PhotoListener photoListener;
+
     public static PhotoAdapter photoAdapter;
     public static Map<String, ArrayList<Photo>> groupHashMap;
     List<String> getOnlyDate;
     List<Photo> photoList;
-    private static final int MY_READ_PERMISSION_CODE=101;
-    public static int positionPhotos=-1;
-    public static String getDatePhotos="";
+    private static final int MY_READ_PERMISSION_CODE = 101;
+    public static int positionPhotos = -1;
+    public static String getDatePhotos = "";
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,8 +65,12 @@ public class PhotoFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public PhotoFragment() {
+    public PhotoFragment(PhotoListener photoListener) {
         // Required empty public constructor
+        this.photoListener = photoListener;
+    }
+
+    public PhotoFragment() {
     }
 
     /**
@@ -101,34 +109,35 @@ public class PhotoFragment extends Fragment {
                              Bundle savedInstanceState) {
 
 
-
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_photo, container, false);
         recyclerView = v.findViewById(R.id.recyclerview_photo);
+        addToAlbum = v.findViewById(R.id.buttonAddToAlbum);
 
-        ActivityResultLauncher<String> requestPermissionLauncher =registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-            Log.e("dtbbb","OKOKbb");
+
+        ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+            Log.e("dtbbb", "OKOKbb");
 
             if (isGranted) {
                 // Permission is granted. Continue the action or workflow in your app
-                Log.e("dtee1","OKOK");
+                Log.e("dtee1", "OKOK");
                 //Change
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                photoList=VideoGallery.listOfImages(getContext());
-                getOnlyDate=ShowInforPhotos.onlyGetDate(photoList);
-                groupHashMap=ShowInforPhotos.groupPhotosFollow(photoList,getOnlyDate);
-                photoAdapter=new PhotoAdapter(getContext(),getOnlyDate); //Xong
+                photoList = VideoGallery.listOfImages(getContext());
+                getOnlyDate = ShowInforPhotos.onlyGetDate(photoList);
+                groupHashMap = ShowInforPhotos.groupPhotosFollow(photoList, getOnlyDate);
+                photoAdapter = new PhotoAdapter(getContext(), getOnlyDate, this); //Xong
                 photoAdapter.notifyDataSetChanged();
                 recyclerView.setAdapter(photoAdapter);
             } else {
-                Log.e("dtee","EError");
+                Log.e("dtee", "EError");
             }
         });
-        Log.e("dt115","EError115");
+        Log.e("dt115", "EError115");
         requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
-        Log.e("dt116","EError116");
-        Log.e("dt117","dt117");
+        Log.e("dt116", "EError116");
+        Log.e("dt117", "dt117");
         return v;
     }
 
@@ -139,7 +148,7 @@ public class PhotoFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_main_search:
                 Log.e("Option", "Search Selected");
                 return true;
@@ -166,5 +175,14 @@ public class PhotoFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onPhotoShowAction(boolean isSelected) {
+        if (isSelected){
+            addToAlbum.setVisibility(View.VISIBLE);
+        }  else {
+            addToAlbum.setVisibility(View.GONE);
+        }
     }
 }

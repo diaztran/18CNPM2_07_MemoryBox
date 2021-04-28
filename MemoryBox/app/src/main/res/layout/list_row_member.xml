@@ -8,14 +8,24 @@
     android:id="@+id/layout_item"
     android:padding="1dp">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        android:contentDescription="Gallery image"
-        android:id="@+id/img_video"
-        android:background="#3AB6AB"
-        app:layout_constraintDimensionRatio="1"
-        tools:ignore="MissingConstraints" />
+        <ImageView
+            android:id="@+id/img_video"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#3AB6AB"
+            android:contentDescription="@string/gallery_image"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="1"
+            tools:ignore="MissingConstraints" />
 
+        <ImageView
+            android:id="@+id/imagePhotoSelected"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_check_box"
+            app:layout_constraintBottom_toBottomOf="@+id/img_video"
+            app:layout_constraintEnd_toEndOf="@+id/img_video" />
 </androidx.constraintlayout.widget.ConstraintLayout>

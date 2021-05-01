@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setSupportActionBar(findViewById(R.id.actionbar_main));
+        getSupportActionBar().setTitle(null);
         addControls();
         viewPagerAdapter_main.notifyDataSetChanged();
      }
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager_main = findViewById(R.id.viewpager_main_act);
         mainActionBar = findViewById(R.id.actionbar_main);
 
-        viewPagerAdapter_main = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        viewPagerAdapter_main = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, this);
         viewPager_main.setAdapter(viewPagerAdapter_main);
 
         tabLayout_main.setupWithViewPager(viewPager_main);

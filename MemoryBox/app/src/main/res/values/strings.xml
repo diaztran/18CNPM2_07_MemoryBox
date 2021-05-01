@@ -3,21 +3,21 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="photo_fragment">PHOTOS</string>
     <string name="album_fragment">ALBUMS</string>
-    <string name="online_fragment">PHOTOS</string>
+    <string name="online_fragment">ONLINE</string>
     <string name="title_activity_play_video">PlayVideoActivity</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
     <string name="select">Select</string>
     <string name="setting">Setting</string>
     <string name="search_photo">Search Photo</string>
     <string name="new_photo">New Photo</string>
-    <string name="all_new_album">All New Album</string>
+    <string name="all_new_album" translatable="false">All New Album</string>
     <string name="date_ascending">Date (Ascending)</string>
     <string name="date_descending">Date (Descending)</string>
     <string name="view_type">View Type...</string>
@@ -31,7 +31,6 @@
     <string name="slideshow">Slideshow</string>
     <string name="edit">Edit</string>
     <string name="rotate_left">Rotate Left</string>
-    <string name="add_to_album">Add To Album</string>
     <string name="rename">Rename</string>
     <string name="set_as">Set As...</string>
     <string name="print">Print</string>
@@ -40,23 +39,23 @@
     <string name="show_info">Show Info</string>
     <string name="edit_photo">Edit Photo</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="information">Information</string>
     <string name="title">Title:</string>
-    <string name="title_will_be_place_here">Title will be displayed here</string>
+    <string name="title_will_be_place_here" translatable="false">Title will be displayed here</string>
     <string name="time">Time:</string>
-    <string name="time_will_be_display_here">Time will be displayed here</string>
+    <string name="time_will_be_display_here" translatable="false">Time will be displayed here</string>
     <string name="file_size">File Size:</string>
-    <string name="file_size_will_be_displayed_here">File size will be displayed here!</string>
+    <string name="file_size_will_be_displayed_here" translatable="false">File size will be displayed here!</string>
     <string name="width">Width:</string>
-    <string name="width_of_photo_will_be_display_here">Width of photo will be display here</string>
+    <string name="width_of_photo_will_be_display_here" translatable="false">Width of photo will be display here</string>
     <string name="height">Height</string>
-    <string name="height_of_photo_will_be_displayed_here">Height of photo will be displayed here</string>
-    <string name="orientation_wil_be_displayed_here">Orientation wil be displayed here</string>
+    <string name="height_of_photo_will_be_displayed_here" translatable="false">Height of photo will be displayed here</string>
+    <string name="orientation_wil_be_displayed_here" translatable="false">Orientation wil be displayed here</string>
     <string name="light_source">Light Source:</string>
-    <string name="light_source_will_be_displayed_here">Light source will be displayed here</string>
+    <string name="light_source_will_be_displayed_here" translatable="false">Light source will be displayed here</string>
     <string name="path">Path:</string>
-    <string name="path_will_be_displayed_here">Path will be displayed here</string>
+    <string name="path_will_be_displayed_here" translatable="false">Path will be displayed here</string>
     <string name="add_to">Add To</string>
     <string name="share_video">Share Video</string>
     <string name="duration">Duration</string>
@@ -64,40 +63,53 @@
     <!--Chung image vs video    -->
     <string name="nameMedia">Name:</string>
     <string name="pathMedia">Path:</string>
-    <string name="dateTakenMedia">Date:</string>
+    <string name="dateTakenMedia" translatable="false">Date:</string>
     <string name="sizeMedia">Size:</string>
-    <string name="dimensionMedia">Dimension:</string>
+    <string name="dimensionMedia" translatable="false">Dimension:</string>
 
     <!--Detail name information image     -->
     <string name="orientation">Orientation:</string>
     <string name="makeDevice">Make device:</string>
     <string name="device">Device:</string>
-    <string name="apertureValue">Aperture:</string>
-    <string name="forcalLenght">Forcal:</string>
-    <string name="isoValue">Iso:</string>
-    <string name="shutterSpeed">Shutter Speed:</string>
-    <string name="whiteBalance">White Balance:</string>
+    <string name="apertureValue" translatable="false">Aperture:</string>
+    <string name="forcalLenght" translatable="false">Forcal:</string>
+    <string name="isoValue" translatable="false">Iso:</string>
+    <string name="shutterSpeed" translatable="false">Shutter Speed:</string>
+    <string name="whiteBalance" translatable="false">White Balance:</string>
     <!--Detail name information video    -->
     <string name="displayDuration">Duration:</string>
     <!--Chung image vs video    -->
     <string name="addressMedia">Location:</string>
 
-    <string name="inputDetailInfor">Input detail Information</string>
-    <string name="recycler_bin">Recycler Bin</string>
+    <string name="inputDetailInfor" translatable="false">Input detail Information</string>
+    <string name="recycler_bin" translatable="false">Recycler Bin</string>
 
-    <string name="label_brush">Brush</string>
-    <string name="label_text">Text</string>
-    <string name="msg_save_image_to_share">Please save image to share</string>
-    <string name="msg_share_image">Share Image</string>>
-    <string name="label_emoji">Emoji</string>
-    <string name="label_sticker">Sticker</string>
-    <string name="label_eraser">Eraser</string>
-    <string name="label_eraser_mode">Eraser Mode</string>
-    <string name="msg_save_image">Are you want to exit without saving image ?</string>
-    <string name="label_filter">Filter</string>
+    <string name="label_brush" translatable="false">Brush</string>
+    <string name="label_text" translatable="false">Text</string>
+    <string name="msg_save_image_to_share" translatable="false">Please save image to share</string>
+    <string name="msg_share_image" translatable="false">Share Image</string>>
+    <string name="label_emoji" translatable="false">Emoji</string>
+    <string name="label_sticker" translatable="false">Sticker</string>
+    <string name="label_eraser" translatable="false">Eraser</string>
+    <string name="label_eraser_mode" translatable="false">Eraser Mode</string>
+    <string name="msg_save_image" translatable="false">Are you want to exit without saving image ?</string>
+    <string name="label_filter" translatable="false">Filter</string>
     <string name="done">Done</string>
     <string name="app_intent_name">PhotoEditor</string>
     <string name="select_image">Select Image</string>
     <string name="gallery_image">Gallery image</string>
+    <string name="share_selected_photos">Share selected photos</string>
+    <string name="delete_selected_photos">Delete selected photos</string>
+    <string name="select_all">Select All</string>
+    <string name="add_to_album">Add To Album</string>
+    <string name="language">Language</string>
+    <string name="english" translatable="false">English</string>
+    <string name="textview" translatable="false">TextView</string>
+
+    <!--    String Arrays-->
+    <string-array name="languages">
+        <item>English</item>
+        <item>Tiếng Việt</item>
+    </string-array>
 
 </resources>

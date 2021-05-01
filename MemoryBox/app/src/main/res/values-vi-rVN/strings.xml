@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MemoryBox</string>
+    <string name="photo_fragment">ẢNH</string>
+    <string name="album_fragment">TẬP ẢNH</string>
+    <string name="online_fragment">TRỰC TUYẾN</string>
+    <string name="next">Tiếp</string>
+    <string name="previous">Trước</string>
+    <string name="setting">Cài đặt</string>
+    <string name="search_photo">Tìm</string>
+    <string name="date_ascending">Ngày (Tăng)</string>
+    <string name="date_descending">Ngày (Giảm)</string>
+    <string name="view_type">Kiểu xem</string>
+    <string name="list">Danh sách</string>
+    <string name="grid">Lưới</string>
+    <string name="name_ascending">Tên (Tăng)</string>
+    <string name="name_descending">Tên (Giảm)</string>
+    <string name="sort_by">Sắp xếp</string>
+    <string name="share_photo">Chia sẻ</string>
+    <string name="delete_photo">Xóa</string>
+    <string name="slideshow">Trình chiếu</string>
+    <string name="edit">Sửa</string>
+    <string name="rotate_left">Xoay trái</string>
+    <string name="rename">Đổi tên</string>
+    <string name="set_as">Đặt là</string>
+    <string name="print">In</string>
+    <string name="scar_qr_code">Quét QR</string>
+    <string name="rotate_right">Xoay phải</string>
+    <string name="show_info">Thông tin</string>
+    <string name="edit_photo">Sửa</string>
+    <string name="title">Tiêu đề</string>
+    <string name="time">Thời gian</string>
+    <string name="file_size">Kích thước</string>
+    <string name="width">Rộng</string>
+    <string name="height">Cao</string>
+    <string name="light_source">Nguồn</string>
+    <string name="path">Đường dẫn</string>
+    <string name="add_to">Thêm vào</string>
+    <string name="share_video">Chia sẻ</string>
+    <string name="duration">Độ dài</string>
+    <string name="nameMedia">Tên</string>
+    <string name="pathMedia">Đường dẫn</string>
+    <string name="language">Ngôn ngữ</string>s
+    <string name="add_to_album">Thêm vào Album</string>
+    <string name="select_all">Chọn hết</string>
+    <string name="delete_selected_photos">Xóa ảnh đã chọn</string>
+    <string name="share_selected_photos">Chia sẻ ảnh đã chọn</string>
+    <string name="select_image">Chọn ảnh</string>
+    <string name="app_intent_name">Trình sửa ảnh</string>
+    <string name="done">Xong</string>
+    <string name="addressMedia">Vị trí</string>
+    <string name="displayDuration">Độ dài</string>
+    <string name="sizeMedia">Kích thước</string>
+    <string name="orientation">Xoay</string>
+    <string name="new_photo">Ảnh mới</string>
+    <string name="select">Chọn</string>
+    <string name="gallery_image" translatable="false">Thư viện</string>
+    <string name="title_activity_play_video" translatable="false">Trình phát</string>
+    <string name="device" translatable="false">Thiết bị</string>
+    <string name="makeDevice" translatable="false">Thiết bị tạo</string>
+    <string name="information" translatable="false">Thông tin</string>
+</resources>

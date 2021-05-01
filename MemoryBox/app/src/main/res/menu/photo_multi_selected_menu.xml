@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.MainActivity">
+
+    <item
+        android:id="@+id/action_selected_share"
+        android:icon="@drawable/ic_share"
+        android:title="@string/share_selected_photos"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_selected_deleted"
+        android:title="@string/delete_selected_photos"
+        android:icon="@drawable/ic_delete"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_selected_selectAll"
+        android:title="@string/select_all"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_selected_allToAlbum"
+        android:title="@string/add_to_album"
+        app:showAsAction="never"/>
+</menu>

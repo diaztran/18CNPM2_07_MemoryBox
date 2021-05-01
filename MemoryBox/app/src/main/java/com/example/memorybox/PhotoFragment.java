@@ -29,6 +29,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.memorybox.PhotoListener;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,12 +67,8 @@ public class PhotoFragment extends Fragment implements PhotoListener{
     private String mParam1;
     private String mParam2;
 
-    public PhotoFragment(PhotoListener photoListener) {
-        // Required empty public constructor
-        this.photoListener = photoListener;
-    }
-
     public PhotoFragment() {
+        this.photoListener = this;
     }
 
     /**
@@ -164,6 +162,8 @@ public class PhotoFragment extends Fragment implements PhotoListener{
                 Log.e("Option", "Select Selected");
                 return true;
             case R.id.action_main_setting:
+                Intent settingIntent = new Intent(this.getContext(), Setting.class);
+                startActivity(settingIntent);
                 Log.e("Option", "Setting Selected");
                 return true;
             default:

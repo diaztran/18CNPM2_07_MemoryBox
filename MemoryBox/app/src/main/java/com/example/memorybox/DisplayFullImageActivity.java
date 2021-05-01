@@ -49,6 +49,7 @@ public class DisplayFullImageActivity extends AppCompatActivity {
         toolbar_photo = findViewById(R.id.toolbar_photo);
         bottomNavigationView_photo = findViewById(R.id.navigation_bar_photo);
         setSupportActionBar(toolbar_photo);
+        getSupportActionBar().setTitle(null);
         photo=new Photo(getIntent().getStringExtra("path_image"),getIntent().getStringExtra("thumb_image"));
         Log.e("lofi path image",getIntent().getStringExtra("path_image"));
         Log.e("lofi thumb image",getIntent().getStringExtra("thumb_image"));

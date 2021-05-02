@@ -105,6 +105,7 @@
     <string name="language">Language</string>
     <string name="english" translatable="false">English</string>
     <string name="textview" translatable="false">TextView</string>
+    <string name="favorite">Favorite</string>
 
     <!--    String Arrays-->
     <string-array name="languages">

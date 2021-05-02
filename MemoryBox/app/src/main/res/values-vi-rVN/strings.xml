@@ -56,7 +56,8 @@
     <string name="select">Chọn</string>
     <string name="gallery_image" translatable="false">Thư viện</string>
     <string name="title_activity_play_video" translatable="false">Trình phát</string>
-    <string name="device" translatable="false">Thiết bị</string>
-    <string name="makeDevice" translatable="false">Thiết bị tạo</string>
     <string name="information" translatable="false">Thông tin</string>
+    <string name="makeDevice">Thiết bị tạo</string>
+    <string name="device">Thiết bị</string>
+    <string name="favorite">Yêu thích</string>
 </resources>

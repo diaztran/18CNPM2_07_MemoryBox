@@ -12,9 +12,9 @@
         android:title="@string/slideshow"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/photo_navigation_edit"
-        android:icon="@drawable/ic_edit"
-        android:title="@string/edit_photo"
+        android:id="@+id/photo_navigation_favortie"
+        android:icon="@drawable/ic_add_to_favorite"
+        android:title="@string/favorite"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/photo_navigation_share"

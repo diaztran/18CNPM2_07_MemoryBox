@@ -45,13 +45,13 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter implements Photo
         String pageTitle = "";
         switch (position) {
             case 1:
-                pageTitle = context.getString(R.string.photo_fragment);
-                break;
-            case 2:
                 pageTitle = context.getString(R.string.album_fragment);
                 break;
-            default:
+            case 2:
                 pageTitle = context.getString(R.string.online_fragment);
+                break;
+            default:
+                pageTitle = context.getString(R.string.photo_fragment);
                 break;
         }
         return pageTitle;

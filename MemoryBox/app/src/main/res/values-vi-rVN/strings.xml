@@ -57,7 +57,14 @@
     <string name="gallery_image" translatable="false">Thư viện</string>
     <string name="title_activity_play_video" translatable="false">Trình phát</string>
     <string name="information" translatable="false">Thông tin</string>
+<!--    Yêu thích-->`
+
     <string name="makeDevice">Thiết bị tạo</string>
     <string name="device">Thiết bị</string>
     <string name="favorite">Yêu thích</string>
+
+    <!--Thêm album    -->
+    <string name="add_album_folder">Thêm album</string>
+    <string name="add_album">Thêm</string>
+    <string name="deny_album">Hủy</string>
 </resources>

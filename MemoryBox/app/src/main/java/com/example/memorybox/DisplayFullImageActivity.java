@@ -28,6 +28,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Member;
@@ -97,7 +98,45 @@ public class DisplayFullImageActivity extends AppCompatActivity {
                         editIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                         startActivity(Intent.createChooser(editIntent, null));
                         return true;
+                    case R.id.action_photo_favorite:
+                        String[] token=pathImage.split("/");
+                        String fileImageOrigin=token[token.length-1];
+                        String[] token1=fileImageOrigin.split("\\.");
+                        String imgName=token1[0];
+                        //Create Path to save Image
+                        File path=Environment.getExternalStoragePublicDirectory("FavoriteAlbum");//Creates app specific folder
+                        if(!path.exists())
+                        {
+                            path.mkdirs();
+                            Log.e("f love","favorite album is crate");
+                        }
+                        else
+                        {
+                            Log.e("f love","favorite album is exit");
+                        }
+                        File imageFile=new File(path,imgName+".png");// Imagename.png
+                        try {
+                            FileOutputStream out=new FileOutputStream(imageFile);
+                            image.setDrawingCacheEnabled(true);
+                            Bitmap bm =image.getDrawingCache();
+                            bm.compress(Bitmap.CompressFormat.PNG,100,out); //Compress Image
 
+                            out.flush();
+                            out.close();
+                            // Dùng để sao chép ảnh. K dùng kiểu copy file thông thường
+                            MediaScannerConnection.scanFile(DisplayFullImageActivity.this, new String[]{imageFile.getAbsolutePath()}, null, new MediaScannerConnection.OnScanCompletedListener() {
+                                @Override
+                                public void onScanCompleted(String path, Uri uri) {
+                                    Log.i("ExternalStorage", "Scanned " + path + ":");
+                                }
+                            });
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Toast.makeText(DisplayFullImageActivity.this,"love Album",Toast.LENGTH_LONG).show();
+                        return true;
                     case R.id.action_photo_share:
                         BitmapDrawable bitmapDrawable = (BitmapDrawable) image.getDrawable();
                         Bitmap bitmap = bitmapDrawable.getBitmap();
@@ -169,6 +208,45 @@ public class DisplayFullImageActivity extends AppCompatActivity {
                         FragmentManager fm = getSupportFragmentManager();
                         PhotoInformationFragment photoInformationFragment = PhotoInformationFragment.newInstance("Photo Information", "Dialog");
                         photoInformationFragment.show(fm, null);
+                        return true;
+                    case R.id.photo_navigation_favortie:
+                        String[] token=pathImage.split("/");
+                        String fileImageOrigin=token[token.length-1];
+                        String[] token1=fileImageOrigin.split("\\.");
+                        String imgName=token1[0];
+                        //Create Path to save Image
+                        File path=Environment.getExternalStoragePublicDirectory("FavoriteAlbum");//Creates app specific folder
+                        if(!path.exists())
+                        {
+                            path.mkdirs();
+                            Log.e("f love","favorite album is crate");
+                        }
+                        else
+                        {
+                            Log.e("f love","favorite album is exit");
+                        }
+                        File imageFile=new File(path,imgName+".png");// Imagename.png
+                        try {
+                            FileOutputStream out=new FileOutputStream(imageFile);
+                            image.setDrawingCacheEnabled(true);
+                            Bitmap bm =image.getDrawingCache();
+                            bm.compress(Bitmap.CompressFormat.PNG,100,out); //Compress Image
+
+                            out.flush();
+                            out.close();
+                            // Dùng để sao chép ảnh. K dùng kiểu copy file thông thường
+                            MediaScannerConnection.scanFile(DisplayFullImageActivity.this, new String[]{imageFile.getAbsolutePath()}, null, new MediaScannerConnection.OnScanCompletedListener() {
+                                @Override
+                                public void onScanCompleted(String path, Uri uri) {
+                                    Log.i("ExternalStorage", "Scanned " + path + ":");
+                                }
+                            });
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Toast.makeText(DisplayFullImageActivity.this,"love Album",Toast.LENGTH_LONG).show();
                         return true;
                     default:
                         return true;

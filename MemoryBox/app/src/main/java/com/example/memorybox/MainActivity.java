@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         viewPagerAdapter_main = new ViewPagerAdapter(getSupportFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, this);
         viewPager_main.setAdapter(viewPagerAdapter_main);
-
+        viewPager_main.setOffscreenPageLimit(2);
         tabLayout_main.setupWithViewPager(viewPager_main);
     }
 }

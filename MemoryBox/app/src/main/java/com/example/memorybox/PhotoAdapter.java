@@ -35,7 +35,10 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.GridViewHold
         this.photoList = photoList;
         this.photoListener = photoListener;
     }
-
+    public PhotoAdapter(Context context, List<String> photoList) {
+        this.context = context;
+        this.photoList = photoList;
+    }
     public MemberAdp getAdapterMember(){
         return this.adapterMember;
     }

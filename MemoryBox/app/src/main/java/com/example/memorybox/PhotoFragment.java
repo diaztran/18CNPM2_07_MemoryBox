@@ -102,42 +102,91 @@ public class PhotoFragment extends Fragment implements PhotoListener{
     }
 
 
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//
+//
+//        // Inflate the layout for this fragment
+//        View v = inflater.inflate(R.layout.fragment_photo, container, false);
+//        recyclerView = v.findViewById(R.id.recyclerview_photo);
+//        addToAlbum = v.findViewById(R.id.buttonAddToAlbum);
+//
+//
+//        ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+//            Log.e("dtbbb", "OKOKbb");
+//
+//            if (isGranted) {
+//                // Permission is granted. Continue the action or workflow in your app
+//                Log.e("dtee1", "OKOK");
+//                //Change
+//                recyclerView.setHasFixedSize(true);
+//                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//                photoList = VideoGallery.listOfImages(getContext());
+//                getOnlyDate = ShowInforPhotos.onlyGetDate(photoList);
+//                groupHashMap = ShowInforPhotos.groupPhotosFollow(photoList, getOnlyDate);
+//                photoAdapter = new PhotoAdapter(getContext(), getOnlyDate, this); //Xong
+//                photoAdapter.notifyDataSetChanged();
+//                recyclerView.setAdapter(photoAdapter);
+//            } else {
+//                Log.e("dtee", "EError");
+//            }
+//        });
+//        Log.e("dt115", "EError115");
+//        requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
+//        Log.e("dt116", "EError116");
+//        Log.e("dt117", "dt117");
+//        return v;
+//    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 
+
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_photo, container, false);
         recyclerView = v.findViewById(R.id.recyclerview_photo);
-        addToAlbum = v.findViewById(R.id.buttonAddToAlbum);
 
-
-        ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-            Log.e("dtbbb", "OKOKbb");
-
-            if (isGranted) {
+        ActivityResultLauncher<String[]> requestPermissionLauncher =registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), isGranted -> {
+            int countPermission=0;
+            for(Map.Entry<String, Boolean> b:isGranted.entrySet())
+            {
+                if(b.getValue())
+                {
+                    Toast.makeText(getActivity(),b.getKey()+"",Toast.LENGTH_LONG).show();
+                    countPermission+=1;
+                }
+//                Log.e("DEBUG",b.getKey()+" --- "+b.getValue());
+            }
+            Log.e("DEBUG",""+countPermission);
+            if (countPermission==isGranted.size()){
                 // Permission is granted. Continue the action or workflow in your app
-                Log.e("dtee1", "OKOK");
+                Log.e("dtee1","OKOK");
                 //Change
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                photoList = VideoGallery.listOfImages(getContext());
-                getOnlyDate = ShowInforPhotos.onlyGetDate(photoList);
-                groupHashMap = ShowInforPhotos.groupPhotosFollow(photoList, getOnlyDate);
-                photoAdapter = new PhotoAdapter(getContext(), getOnlyDate, this); //Xong
+                photoList=VideoGallery.listOfImages(getContext());
+                getOnlyDate=ShowInforPhotos.onlyGetDate(photoList);
+                groupHashMap=ShowInforPhotos.groupPhotosFollow(photoList,getOnlyDate);
+                photoAdapter=new PhotoAdapter(getContext(),getOnlyDate); //Xong
                 photoAdapter.notifyDataSetChanged();
                 recyclerView.setAdapter(photoAdapter);
             } else {
-                Log.e("dtee", "EError");
+                Log.e("dtee","EError");
             }
         });
-        Log.e("dt115", "EError115");
-        requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
-        Log.e("dt116", "EError116");
-        Log.e("dt117", "dt117");
+        Log.e("dt115","EError115");
+//        requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
+//        requestPermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        requestPermissionLauncher.launch(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE});
+        Log.e("dt116","EError116");
+        Log.e("dt117","dt117");
         return v;
     }
+
+
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {

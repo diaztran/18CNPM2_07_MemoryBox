@@ -27,7 +27,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MemoryBox"
         tools:ignore="ExtraText">
-        <activity android:name=".Setting"></activity>
+        <activity android:name=".PhotosInAlbum"></activity>
+        <activity android:name=".Setting" />
         <activity
             android:name=".EditImageActivity"
             android:screenOrientation="portrait"

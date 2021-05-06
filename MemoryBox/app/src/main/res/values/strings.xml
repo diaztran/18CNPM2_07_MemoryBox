@@ -107,10 +107,16 @@
     <string name="textview" translatable="false">TextView</string>
     <string name="favorite">Favorite</string>
 
+    <!--Thêm album    -->
+    <string name="add_album_folder">Add to album</string>
+    <string name="add_album">Add</string>
+    <string name="deny_album">Cancel</string>
+
     <!--    String Arrays-->
     <string-array name="languages">
         <item>English</item>
         <item>Tiếng Việt</item>
     </string-array>
+
 
 </resources>

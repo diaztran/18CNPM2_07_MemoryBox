@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -31,8 +32,8 @@ import java.util.List;
  */
 public class AlbumFragment extends Fragment {
     RecyclerView recyclerView;
-    AlbumAdapter albumAdapter;
-    List<Album> buckets;
+    public static AlbumAdapter albumAdapter;
+    List<Album> listAlbums;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -88,49 +89,46 @@ public class AlbumFragment extends Fragment {
             if (isGranted) {
                 // Permission is granted. Continue the action or workflow in your app
                 Log.e("lofi3","in isGranted");
-                //Change
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                buckets=getImageBuckets(getContext());
-                Log.e("lofiBucket",buckets.size()+"");
 
-                albumAdapter =new AlbumAdapter(getContext(),buckets); //Xong
-                Log.e("lofiBucketaffter",buckets.size()+"");
-                albumAdapter.notifyDataSetChanged();
+                listAlbums=HandleAlbum.getAlbum(getContext());
+
+                Log.e("lofiBucket",listAlbums.size()+"");
+                albumAdapter =new AlbumAdapter(getContext(),listAlbums); //Xong
+                Log.e("lofiBucketaffter",listAlbums.size()+"");
                 recyclerView.setAdapter(albumAdapter);
             } else {
-//                Log.e("dtee","EError");
+                Log.e("dtee","EError");
             }
         });
         requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
         return v;
     }
 
-    public static List<Album> getImageBuckets(Context mContext){
-        List<Album> buckets = new ArrayList<>();
-        Uri uri= MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-        String [] projection = {MediaStore.Images.Media.BUCKET_DISPLAY_NAME, MediaStore.Images.Media.DATA};
-        List<String> nameAlbum=new ArrayList<>();
-        Cursor cursor = mContext.getContentResolver().query(uri, projection, null, null, null);
-        if(cursor != null){
-            File file;
-            while (cursor.moveToNext()){
-                String bucketPath = cursor.getString(cursor.getColumnIndex(projection[0]));
-                String fisrtImage = cursor.getString(cursor.getColumnIndex(projection[1]));
-                file = new File(fisrtImage);
-                String bucketName;
-                if (file.exists()&&!nameAlbum.contains(bucketPath)) {
-                    buckets.add(new Album(bucketPath, fisrtImage));
-                    nameAlbum.add(bucketPath);
-                }
-            }
-            cursor.close();
-        }
-        return buckets;
-    }
+
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.main_actionbar_albumtab_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.action_main_search:
+                Log.e("Option", "Search Selected");
+                return true;
+            case R.id.action_main_addPhoto:
+                Log.e("Option add photos", "add ablum oke");
+                AddAlbumDialogFragment fragmentAddAlbum=new AddAlbumDialogFragment();
+                fragmentAddAlbum.show(getParentFragmentManager(),"dialog");
+                //Do st
+                return true;
+            default:
+                return true;
+        }
+
     }
 }

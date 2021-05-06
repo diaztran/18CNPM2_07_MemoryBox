@@ -1,6 +1,7 @@
 package com.example.memorybox;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,18 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.albumRowHold
         holder.layoutItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, album.getName(), Toast.LENGTH_LONG).show();
+                String albumName=album.getName();
+                Intent intent=new Intent(context,PhotosInAlbum.class);
+                intent.putExtra("nameAlbum",albumName);
+                try {
+//                    Toast.makeText(context,albumName,Toast.LENGTH_LONG).show();
+                    Log.e("haha",albumName);
+                    context.startActivity(intent);
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
             }
         });
     }

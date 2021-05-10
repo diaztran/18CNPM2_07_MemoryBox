@@ -30,7 +30,7 @@ public class VideoGallery {
                 int thumb=cursor.getColumnIndexOrThrow(MediaStore.Video.Thumbnails.DATA);
                 listOfAllImages.add(new Photo(path,cursor.getString(thumb)));
             }
-            else
+            else if(path.endsWith("jpg")||path.endsWith("png")||path.endsWith("gif")||path.endsWith("jpeg"))
             {
                 int thumb=cursor.getColumnIndexOrThrow(MediaStore.Images.Thumbnails.DATA);
                 listOfAllImages.add(new Photo(path,cursor.getString(thumb)));

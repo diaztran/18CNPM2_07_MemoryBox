@@ -53,7 +53,7 @@ public class PhotoFragment extends Fragment implements PhotoListener{
     public static PhotoAdapter photoAdapter;
     public static Map<String, ArrayList<Photo>> groupHashMap;
     List<String> getOnlyDate;
-    List<Photo> photoList;
+    public static List<Photo> photoList;
     private static final int MY_READ_PERMISSION_CODE = 101;
     public static int positionPhotos = -1;
     public static String getDatePhotos = "";

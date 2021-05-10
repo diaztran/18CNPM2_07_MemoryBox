@@ -29,6 +29,7 @@ public class MemberAdp extends RecyclerView.Adapter<MemberAdp.PhotoHolder> {
         this.context = context;
         this.photoListener = photoListener;
     }
+    
     public MemberAdp(List<Photo> arrayListMember, Context context) {
         this.arrayListMember = arrayListMember;
         this.context = context;

@@ -82,7 +82,15 @@ public class DisplayFullImageActivity extends AppCompatActivity {
                         File imagePathFile = new File(pathImage);
                         if (imagePathFile.delete())
                         {
+
                             Toast.makeText(DisplayFullImageActivity.this, "Photo Deleted", Toast.LENGTH_SHORT).show();
+                            MediaScannerConnection.scanFile(DisplayFullImageActivity.this, new String[]{pathImage}, null, new MediaScannerConnection.OnScanCompletedListener() {
+                                @Override
+                                public void onScanCompleted(String path, Uri uri) {
+                                    Log.i("ExternalStorage1", "Scanned " + path + ":");
+                                }
+                            });
+
                         } else
                         {
                             Toast.makeText(DisplayFullImageActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();

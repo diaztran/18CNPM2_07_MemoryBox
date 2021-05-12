@@ -60,7 +60,6 @@ public class AddPhotosToAlbumAdapter extends RecyclerView.Adapter<AddPhotosToAlb
                 if(!path.exists())
                 {
                     path.mkdirs();
-                    Log.e("f love","favorite album is crate");
                 }
                 else
                 {
@@ -91,48 +90,6 @@ public class AddPhotosToAlbumAdapter extends RecyclerView.Adapter<AddPhotosToAlb
             }
         });
     }
-/*
-                        String[] token=pathImage.split("/");
-                        String fileImageOrigin=token[token.length-1];
-                        String[] token1=fileImageOrigin.split("\\.");
-                        String imgName=token1[0];
-                        //Create Path to save Image
-                        File path=Environment.getExternalStoragePublicDirectory("FavoriteAlbum");//Creates app specific folder
-                        if(!path.exists())
-                        {
-                            path.mkdirs();
-                            Log.e("f love","favorite album is crate");
-                        }
-                        else
-                        {
-                            Log.e("f love","favorite album is exit");
-                        }
-                        File imageFile=new File(path,imgName+".png");// Imagename.png
-                        try {
-                            FileOutputStream out=new FileOutputStream(imageFile);
-                            image.setDrawingCacheEnabled(true);
-                            Bitmap bm =image.getDrawingCache();
-                            bm.compress(Bitmap.CompressFormat.PNG,100,out); //Compress Image
-
-                            out.flush();
-                            out.close();
-                            // Dùng để sao chép ảnh. K dùng kiểu copy file thông thường
-                            MediaScannerConnection.scanFile(DisplayFullImageActivity.this, new String[]{imageFile.getAbsolutePath()}, null, new MediaScannerConnection.OnScanCompletedListener() {
-                                @Override
-                                public void onScanCompleted(String path, Uri uri) {
-                                    Log.i("ExternalStorage", "Scanned " + path + ":");
-                                }
-                            });
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        Toast.makeText(DisplayFullImageActivity.this,"love Album",Toast.LENGTH_LONG).show();
-
-
-
-* */
     @Override
     public int getItemCount() {
         return albumList.size();

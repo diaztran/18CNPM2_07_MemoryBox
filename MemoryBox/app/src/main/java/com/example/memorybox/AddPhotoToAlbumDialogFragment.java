@@ -1,5 +1,8 @@
 package com.example.memorybox;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -65,28 +69,58 @@ public class AddPhotoToAlbumDialogFragment extends DialogFragment {
         }
     }
 
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//        // Inflate the layout for this fragment
+//        View v=inflater.inflate(R.layout.fragment_add_photo_to_album_dialog, container, false);
+//        recyclerView=v.findViewById(R.id.recyclerview_album);
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        listAlbumsDialog=HandleAlbum.getAlbum(getContext());
+//        addPhotosToAlbumAdapter = new AddPhotosToAlbumAdapter(getContext(),listAlbumsDialog); //Xong
+//        recyclerView.setAdapter(addPhotosToAlbumAdapter);
+//        return v;
+//
+//    }
+
+
+    @NonNull
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v=inflater.inflate(R.layout.fragment_add_photo_to_album_dialog, container, false);
-        recyclerView=v.findViewById(R.id.recyclerview_album);
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        AlertDialog.Builder dialog=new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater=getActivity().getLayoutInflater();
+        View view=inflater.inflate(R.layout.fragment_add_photo_to_album_dialog,null);
+        recyclerView=view.findViewById(R.id.recyclerview_album);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         listAlbumsDialog=HandleAlbum.getAlbum(getContext());
         addPhotosToAlbumAdapter = new AddPhotosToAlbumAdapter(getContext(),listAlbumsDialog); //Xong
         recyclerView.setAdapter(addPhotosToAlbumAdapter);
-        return v;
+        dialog.setView(view);
 
+
+
+        dialog.setNegativeButton(R.string.deny_album, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        return dialog.create();
     }
 
-//    @Override
-//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-//    }
-//
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        int dialogWidth = getResources().getDisplayMetrics().widthPixels;
+        int dialogHeight = getResources().getDisplayMetrics().heightPixels;
+        getDialog().getWindow().setLayout(dialogWidth,dialogHeight);
+    }
 }

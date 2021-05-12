@@ -18,6 +18,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +32,11 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class AlbumFragment extends Fragment {
+    public static int VIEWTYPE_GRID = 1;
+    public static int VIEWTYPE_LIST = 2;
+
+    private int viewType = VIEWTYPE_LIST;
+
     RecyclerView recyclerView;
     public static AlbumAdapter albumAdapter;
     public static List<Album> listAlbums;
@@ -45,6 +51,7 @@ public class AlbumFragment extends Fragment {
 
     public AlbumFragment() {
         // Required empty public constructor
+        this.viewType = VIEWTYPE_LIST;
     }
 
     /**
@@ -90,7 +97,11 @@ public class AlbumFragment extends Fragment {
                 // Permission is granted. Continue the action or workflow in your app
                 Log.e("lofi3","in isGranted");
                 recyclerView.setHasFixedSize(true);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//                mProductListRecyclerView.setLayoutManager(isViewWithCatalog ? new LinearLayoutManager(this) : new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+
+                if (this.viewType == VIEWTYPE_LIST) {
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                } else recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
                 listAlbums=HandleAlbum.getAlbum(getContext());
 
@@ -125,6 +136,14 @@ public class AlbumFragment extends Fragment {
                 AddAlbumDialogFragment fragmentAddAlbum=new AddAlbumDialogFragment();
                 fragmentAddAlbum.show(getParentFragmentManager(),"dialog");
                 //Do st
+                return true;
+            case R.id.action_viewtype_grid:
+                this.viewType = VIEWTYPE_GRID;
+                recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+                return true;
+            case R.id.action_viewtype_list:
+                this.viewType = VIEWTYPE_LIST;
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 return true;
             default:
                 return true;

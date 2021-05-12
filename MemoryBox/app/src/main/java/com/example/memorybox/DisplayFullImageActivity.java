@@ -35,10 +35,10 @@ import java.lang.reflect.Member;
 import java.util.ArrayList;
 
 public class DisplayFullImageActivity extends AppCompatActivity {
-    ImageView image;
+    public static ImageView image;
     Toolbar toolbar_photo;
     BottomNavigationView bottomNavigationView_photo;
-    private String pathImage;
+    public static String pathImage;
     private ArrayList<String> listInfoPhoto;
     public static String pathImageToDelete;
     private Photo photo;
@@ -144,6 +144,16 @@ public class DisplayFullImageActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         Toast.makeText(DisplayFullImageActivity.this,"love Album",Toast.LENGTH_LONG).show();
+                        return true;
+                    case R.id.action_photo_addToAlbum:
+                        FragmentManager fm=getSupportFragmentManager();
+                        AddPhotoToAlbumDialogFragment addPhotoToAlbumDialogFragment=AddPhotoToAlbumDialogFragment.newInstance("List Album","Dialog");
+                        addPhotoToAlbumDialogFragment.show(fm,null);
+
+//                        listInfoPhoto = ShowInforPhotos.listOfImageVideos(getApplicationContext(), pathImage);
+//                        FragmentManager fm = getSupportFragmentManager();
+//                        PhotoInformationFragment photoInformationFragment = PhotoInformationFragment.newInstance("Photo Information", "Dialog");
+//                        photoInformationFragment.show(fm, null);
                         return true;
                     case R.id.action_photo_share:
                         BitmapDrawable bitmapDrawable = (BitmapDrawable) image.getDrawable();

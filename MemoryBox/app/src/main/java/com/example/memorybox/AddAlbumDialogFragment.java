@@ -68,6 +68,8 @@ public class AddAlbumDialogFragment extends DialogFragment {
             if(file.isDirectory())
             {
                 Toast.makeText(getActivity(),"Dir create success",Toast.LENGTH_LONG).show();
+                AlbumFragment.listAlbums.add(new Album(nameAlbum,""));
+                AlbumFragment.albumAdapter.notifyDataSetChanged();
             }
             else{
                 Toast.makeText(getActivity(),"Message failed\nPath"+Environment.getExternalStorageDirectory()+"\nmkdirs"+file.mkdirs(),Toast.LENGTH_LONG).show();

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.MainActivity">
+
+    <item
+        android:id="@+id/in_album_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search_photo"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/in_album_addPhoto"
+        android:icon="@drawable/ic_add"
+        android:title="@string/add_media"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/in_album_sortby"
+        android:title="@string/sort_by"
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/in_album_action_by_date_ascending"
+                android:title="@string/date_ascending"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/in_album_action_by_date_descending"
+                android:title="@string/date_descending"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/in_album_action_by_name_ascending"
+                android:title="@string/name_ascending"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/in_album_action_by_name_descending"
+                android:title="@string/name_descending"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/in_album_action_viewtype"
+        android:title="@string/view_type"
+        app:showAsAction="never">
+        <menu>
+            <item
+                android:id="@+id/in_album_action_viewtype_list"
+                android:title="@string/list"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/in_album_action_viewtype_grid"
+                android:title="@string/grid"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+
+
+    <item
+        android:id="@+id/ain_album_action_main_setting"
+        android:title="@string/setting"
+        app:showAsAction="never" />
+</menu>

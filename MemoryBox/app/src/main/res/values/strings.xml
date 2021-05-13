@@ -111,11 +111,19 @@
     <string name="add_album_folder">Add to album</string>
     <string name="add_album">Add</string>
     <string name="deny_album">Cancel</string>
+    <string name="add_media">Add media</string>
+    <string name="theme">Theme</string>
+    <string name="dark">Dark</string>
 
     <!--    String Arrays-->
     <string-array name="languages">
         <item>English</item>
         <item>Tiếng Việt</item>
+    </string-array>
+
+    <string-array name="themes">
+        <item>Light</item>
+        <item>Dark</item>
     </string-array>
 
 

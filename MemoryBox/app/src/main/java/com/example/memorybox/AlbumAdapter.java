@@ -35,7 +35,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.albumRowHold
     @Override
     public void onBindViewHolder(@NonNull albumRowHolder holder, int position) {
         Log.e("lofimember"+position,position+"");
-        Album album = albumList.get(position);
+        Album album=albumList.get(position);
         holder.tvFolderName.setText(album.getName().toString());
         holder.layoutItem.setOnClickListener(new View.OnClickListener() {
             @Override

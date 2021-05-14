@@ -300,6 +300,14 @@ public class ShowInforPhotos {
         return tempStringDate;
     }
 
+    public static String convertPathImageToDate(String path)
+    {
+        File file = new File(path);
+        String dateTakenImage=new Date(file.lastModified())+"";
+        ArrayList<String> dateString=standardDate(dateTakenImage);
+        String tempStringDate=dateString.get(1)+" "+dateString.get(2)+" "+dateString.get(3);
+        return tempStringDate;
+    }
     public static Map<String,ArrayList<Photo>> groupPhotosFollow(List<Photo> lstVideo, List<String> getOnlyDate)
     {
         Map<String,ArrayList<Photo>> groupHashMap=new HashMap<>();

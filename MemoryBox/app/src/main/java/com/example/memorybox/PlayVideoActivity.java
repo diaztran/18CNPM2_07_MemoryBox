@@ -1,6 +1,8 @@
 package com.example.memorybox;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -15,9 +17,11 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Environment;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -31,17 +35,61 @@ public class PlayVideoActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView_video;
     private ArrayList<String> listInfoVideo;
     private String pathVideo;
+    private Photo photo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_video);
-        pathVideo=getIntent().getStringExtra("path_video");
-
+//        pathVideo=getIntent().getStringExtra("path_video");
+        photo=new Photo(getIntent().getStringExtra("path_video"),getIntent().getStringExtra("thumb_video"));
+        pathVideo=photo.getPath();
         MxVideoPlayerWidget videoPlayerWidget = findViewById(R.id.mpw_video_player);
         videoPlayerWidget.startPlay(pathVideo, MxVideoPlayer.SCREEN_LAYOUT_NORMAL,"gaga");
         toolbar_video = findViewById(R.id.toolbar_video);
         bottomNavigationView_video = findViewById(R.id.navigation_bar_video);
         setSupportActionBar(toolbar_video);
+        getSupportActionBar().setTitle(null);
+        //Handle toolbar
+        toolbar_video.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId())
+                {
+                    case R.id.action_video_delete:
+//                        Toast.makeText(PlayVideoActivity.this,"position photos"+PhotoFragment.positionPhotos+"\ndate photo"+PhotoFragment.getDatePhotos,Toast.LENGTH_LONG).show();
+                        PhotoFragment.groupHashMap.get(PhotoFragment.getDatePhotos).remove(PhotoFragment.positionPhotos);
+                        PhotoFragment.photoAdapter.notifyDataSetChanged();
+                        File videoPathFile = new File(pathVideo);
+                        if (videoPathFile.delete())
+                        {
+
+                            Toast.makeText(PlayVideoActivity.this, "Video Deleted", Toast.LENGTH_SHORT).show();
+                            MediaScannerConnection.scanFile(PlayVideoActivity.this, new String[]{pathVideo}, null, new MediaScannerConnection.OnScanCompletedListener() {
+                                @Override
+                                public void onScanCompleted(String path, Uri uri) {
+                                    Log.i("ExternalStorage22", "Scanned " + path + ":");
+                                }
+                            });
+
+                        } else
+                        {
+                            Toast.makeText(PlayVideoActivity.this, "Video Something went wrong", Toast.LENGTH_SHORT).show();
+                        }
+                        onBackPressed();
+                        finish();
+                        return true;
+                    case R.id.action_video_addToAlbum:
+                        FragmentManager fm=getSupportFragmentManager();
+                        AddPhotoToAlbumDialogFragment addPhotoToAlbumDialogFragment=AddPhotoToAlbumDialogFragment.newInstance("List Album","Dialog");
+                        addPhotoToAlbumDialogFragment.show(fm,null);
+
+                        return true;
+                    default:
+                        return true;
+                }
+            }
+        });
 
         // Handle events
         bottomNavigationView_video.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -69,6 +117,7 @@ public class PlayVideoActivity extends AppCompatActivity {
 
                         share.setPackage("com.abc.in");
                         startActivity(Intent.createChooser(share, "Message"));
+
                     default:
                         return false;
                 }

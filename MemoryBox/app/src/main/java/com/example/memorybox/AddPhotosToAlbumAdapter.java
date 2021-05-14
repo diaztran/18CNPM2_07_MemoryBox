@@ -18,9 +18,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.List;
 
 public class AddPhotosToAlbumAdapter extends RecyclerView.Adapter<AddPhotosToAlbumAdapter.albumHolder> {
@@ -53,40 +56,44 @@ public class AddPhotosToAlbumAdapter extends RecyclerView.Adapter<AddPhotosToAlb
                 //Còn nữa--phần lấy tên album
                 String[] token=DisplayFullImageActivity.pathImage.split("/");
                 String fileImageOrigin=token[token.length-1];
-                String[] token1=fileImageOrigin.split("\\.");
-                String imgName=token1[0];
-                //Create Path to save Image
-                File path= Environment.getExternalStoragePublicDirectory(albumName);//Creates app specific folder
-                if(!path.exists())
-                {
-                    path.mkdirs();
-                }
-                else
-                {
-                    Log.e("f love","favorite album is exit");
-                }
-                File imageFile=new File(path,imgName+".png");// Imagename.png
-                try {
-                    FileOutputStream out=new FileOutputStream(imageFile);
-                    DisplayFullImageActivity.image.setDrawingCacheEnabled(true);
-                    Bitmap bm =DisplayFullImageActivity.image.getDrawingCache();
-                    bm.compress(Bitmap.CompressFormat.PNG,100,out); //Compress Image
+                if(fileImageOrigin.endsWith("jpg")||fileImageOrigin.endsWith("png")||fileImageOrigin.endsWith("gif")||fileImageOrigin.endsWith("jpeg")){
+                    String[] token1=fileImageOrigin.split("\\.");
+                    String imgName=token1[0];
+                    //Create Path to save Image
+                    File path= Environment.getExternalStoragePublicDirectory(albumName);//Creates app specific folder
+                    if(!path.exists())
+                    {
+                        path.mkdirs();
+                    }
+                    else
+                    {
+                        Log.e("f love","favorite album is exit");
+                    }
+                    File imageFile=new File(path,imgName+".png");// Imagename.png
+                    try {
+                        FileOutputStream out=new FileOutputStream(imageFile);
+                        DisplayFullImageActivity.image.setDrawingCacheEnabled(true);
+                        Bitmap bm =DisplayFullImageActivity.image.getDrawingCache();
+                        bm.compress(Bitmap.CompressFormat.PNG,100,out); //Compress Image
 
-                    out.flush();
-                    out.close();
-                    // Dùng để sao chép ảnh. K dùng kiểu copy file thông thường
-                    MediaScannerConnection.scanFile(context, new String[]{imageFile.getAbsolutePath()}, null, new MediaScannerConnection.OnScanCompletedListener() {
-                        @Override
-                        public void onScanCompleted(String path, Uri uri) {
+                        out.flush();
+                        out.close();
+                        // Dùng để sao chép ảnh. K dùng kiểu copy file thông thường
+                        MediaScannerConnection.scanFile(context, new String[]{imageFile.getAbsolutePath()}, null, new MediaScannerConnection.OnScanCompletedListener() {
+                            @Override
+                            public void onScanCompleted(String path, Uri uri) {
 
-                        }
-                    });
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                            }
+                        });
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(context,albumName,Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(context,albumName,Toast.LENGTH_LONG).show();
+
+
             }
         });
     }
@@ -105,3 +112,28 @@ public class AddPhotosToAlbumAdapter extends RecyclerView.Adapter<AddPhotosToAlb
         }
     }
 }
+/*
+*                 else if(fileImageOrigin.endsWith(".mp4"))
+                {
+                    //Create Path to save Image
+                    File path= Environment.getExternalStoragePublicDirectory(albumName);//Creates app specific folder
+                    if(!path.exists())
+                    {
+                        path.mkdirs();
+                    }
+                    else
+                    {
+                        Log.e("f love","favorite album is exit");
+                    }
+                    File imageFile=new File(path,fileImageOrigin);// abc.mp4
+                    try {
+                        InputStream in=new FileInputStream()
+                        FileOutputStream out=new FileOutputStream(imageFile);
+                        out.write();
+                        out.close();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+* */

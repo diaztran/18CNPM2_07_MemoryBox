@@ -4,18 +4,25 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.media.MediaScannerConnection;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -34,8 +41,12 @@ import com.example.memorybox.tools.EditingToolsAdapter;
 import com.example.memorybox.tools.ToolType;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Set;
 
 import ja.burhanrashid52.photoeditor.OnPhotoEditorListener;
 import ja.burhanrashid52.photoeditor.PhotoEditor;
@@ -297,6 +308,7 @@ public class EditImageActivity extends BaseActivity implements OnPhotoEditorList
                             .build();
 
                     mPhotoEditor.saveAsFile(filePath, saveSettings, new PhotoEditor.OnSaveListener() {
+                        @RequiresApi(api = Build.VERSION_CODES.Q)
                         @Override
                         public void onSuccess(@NonNull String imagePath) {
                             mSaveFileHelper.notifyThatFileIsNowPubliclyAvailable(getContentResolver());
@@ -304,6 +316,26 @@ public class EditImageActivity extends BaseActivity implements OnPhotoEditorList
                             showSnackbar("Image Saved Successfully");
                             mSaveImageUri = uri;
                             mPhotoEditorView.getSource().setImageURI(mSaveImageUri);
+                            //////
+                            Bitmap bitmap = ThumbnailUtils.createImageThumbnail(fileName,MediaStore.Images.Thumbnails.MINI_KIND);
+                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                            byte[] b = baos.toByteArray();
+                            String thub = Base64.encodeToString(b, Base64.DEFAULT);
+
+                            Set<String> keys=PhotoFragment.groupHashMap.keySet(); // lấy all key
+                            if(!keys.contains(ShowInforPhotos.convertPathImageToDate(fileName)))
+                            {
+                                ArrayList<Photo> photoArrayList=new ArrayList<>();
+                                photoArrayList.add(new Photo(fileName,thub));
+                                PhotoFragment.groupHashMap.put(ShowInforPhotos.convertPathImageToDate(fileName),photoArrayList);
+                            }
+                            else
+                            {
+                                PhotoFragment.groupHashMap.get(ShowInforPhotos.convertPathImageToDate(fileName)).add(new Photo(fileName,thub));
+                            }
+                            PhotoFragment.photoAdapter.notifyDataSetChanged();
+
                         }
 
                         @Override

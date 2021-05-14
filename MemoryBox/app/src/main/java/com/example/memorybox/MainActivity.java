@@ -26,7 +26,13 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(null);
         addControls();
         viewPagerAdapter_main.notifyDataSetChanged();
-     }
+
+        if (Setting.appTheme.equals("Dark")) {
+            setTheme(android.R.style.Theme_Black);
+        } else if (Setting.appTheme.equals("Light")){
+            setTheme(android.R.style.Theme_Light);
+        }
+    }
 
     private void addControls() {
         tabLayout_main = findViewById(R.id.tablayout_main_act);

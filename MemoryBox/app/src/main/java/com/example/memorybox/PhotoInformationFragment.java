@@ -111,8 +111,6 @@ TextView nameMedia,pathMedia,dateTakenMedia,sizeMedia,dimensionMedia,orientation
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
     }
 
     @Override

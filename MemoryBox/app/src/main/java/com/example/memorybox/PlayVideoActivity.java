@@ -34,7 +34,7 @@ public class PlayVideoActivity extends AppCompatActivity {
     Toolbar toolbar_video;
     BottomNavigationView bottomNavigationView_video;
     private ArrayList<String> listInfoVideo;
-    private String pathVideo;
+    public static String pathVideo;
     private Photo photo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,10 +80,12 @@ public class PlayVideoActivity extends AppCompatActivity {
                         finish();
                         return true;
                     case R.id.action_video_addToAlbum:
+//                        FragmentManager fm=getSupportFragmentManager();
+//                        AddPhotoToAlbumDialogFragment addPhotoToAlbumDialogFragment=AddPhotoToAlbumDialogFragment.newInstance("List Album","Dialog");
+//                        addPhotoToAlbumDialogFragment.show(fm,null);
                         FragmentManager fm=getSupportFragmentManager();
-                        AddPhotoToAlbumDialogFragment addPhotoToAlbumDialogFragment=AddPhotoToAlbumDialogFragment.newInstance("List Album","Dialog");
-                        addPhotoToAlbumDialogFragment.show(fm,null);
-
+                        AddVideoToAlbumDialogFragment addVideoToAlbumDialogFragment=AddVideoToAlbumDialogFragment.newInstance("List Album","Dialog");
+                        addVideoToAlbumDialogFragment.show(fm,null);
                         return true;
                     default:
                         return true;
